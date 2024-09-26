@@ -1,1 +1,1 @@
-# 십일조 TextRpg
+# 십일조 안내조 TextRpg
