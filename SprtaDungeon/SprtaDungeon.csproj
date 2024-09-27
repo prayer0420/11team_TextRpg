@@ -43,19 +43,39 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Creature.cs" />
-    <Compile Include="Game.cs" />
-    <Compile Include="GameData.cs" />
-    <Compile Include="Item.cs" />
-    <Compile Include="Monster.cs" />
-    <Compile Include="Player.cs" />
+    <Compile Include="Creature\Creature.cs" />
+    <Compile Include="GameManager\Game.cs" />
+    <Compile Include="GameData\GameData.cs" />
+    <Compile Include="Item\Item.cs" />
+    <Compile Include="Creature\Monster.cs" />
+    <Compile Include="Creature\Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Quest.cs" />
-    <Compile Include="Shop.cs" />
+    <Compile Include="Scene\DisplayResources\Display.cs" />
+    <Compile Include="Scene\DungeonScene\Action.cs" />
+    <Compile Include="Scene\DungeonScene\DungeonBattle.cs" />
+    <Compile Include="Scene\DungeonScene\DungeonMain.cs" />
+    <Compile Include="Scene\DungeonScene\DungeonMap.cs" />
+    <Compile Include="Scene\DungeonScene\DungeonRoom.cs" />
+    <Compile Include="Scene\QuestScene\Quest.cs" />
+    <Compile Include="Scene\ShopScene\Shop.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Creature\Inventory\" />
+    <Folder Include="Dungeon\" />
+    <Folder Include="Scene\DisplayResources\DungeonDisplay\" />
+    <Folder Include="Scene\DisplayResources\InventoryDisplay\" />
+    <Folder Include="Scene\DisplayResources\MainDisplay\" />
+    <Folder Include="Scene\DisplayResources\QuestDisplay\" />
+    <Folder Include="Scene\DisplayResources\SceneDisplay\" />
+    <Folder Include="Scene\DisplayResources\ShopDisplay\" />
+    <Folder Include="Scene\InventoryScene\" />
+    <Folder Include="Scene\MainScene\" />
+    <Folder Include="Scene\SceneManager\" />
+    <Folder Include="Skill\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
