@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Creature\Creature.cs" />
+    <Compile Include="Creature\Inventory\Inventory.cs" />
     <Compile Include="GameManager\Game.cs" />
     <Compile Include="GameData\GameData.cs" />
     <Compile Include="Item\Item.cs" />
@@ -66,8 +67,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Creature\Inventory\" />
-    <Folder Include="Dungeon\" />
     <Folder Include="Scene\DisplayResources\InventoryDisplay\" />
     <Folder Include="Scene\DisplayResources\MainDisplay\" />
     <Folder Include="Scene\DisplayResources\QuestDisplay\" />

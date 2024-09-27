@@ -8,7 +8,7 @@ namespace SprtaDungeon.Scene.DisplayResources
 {
     internal interface Display
     {
-        Point Point { get; set; }
+        Point DisplayPoint { get; set; }
 
         void Display();
         int Select();

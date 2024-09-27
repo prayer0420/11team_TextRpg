@@ -7,9 +7,25 @@ using System.Threading.Tasks;
 
 namespace SprtaDungeon
 {
+
+    /*
+     *  몬스터 A에게 10 데미지를 입혔다!
+     * 
+     */
     public class DungeonDisplayApplyDamage : Display
     {
-        Point Display.Point { get; set; }
+        public Point DisplayPoint { get; set; }
+
+        private Monster monster;
+        private int damage;
+
+        public DungeonDisplayApplyDamage(int x, int y, Monster monster, int damage)
+        {
+            DisplayPoint = new Point(x, y);
+
+            this.monster = monster;
+            this.damage = damage;
+        }
 
         void Display.Display()
         {
