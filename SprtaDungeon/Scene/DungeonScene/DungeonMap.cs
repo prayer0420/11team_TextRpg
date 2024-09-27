@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SprtaDungeon.Scene.DungeonScene
+namespace SprtaDungeon
 {
     public class DungeonMap
     {

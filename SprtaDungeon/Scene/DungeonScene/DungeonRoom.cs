@@ -4,9 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SprtaDungeon.Scene.DungeonScene
+namespace SprtaDungeon
 {
     internal class DungeonRoom
     {
+        private DungeonBattle battle;
+
+        public DungeonRoom()
+        {
+
+        }
+
+
     }
 }

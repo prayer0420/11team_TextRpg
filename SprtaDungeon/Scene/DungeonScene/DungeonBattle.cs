@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SprtaDungeon.Scene.DungeonScene
+namespace SprtaDungeon
 {
     internal class DungeonBattle
     {
@@ -24,26 +24,14 @@ namespace SprtaDungeon.Scene.DungeonScene
             int winner;
             actionQueue.Clear();
 
-            //do
-            //{
-            //    end = BattleLoop(out winner);
-            //} while (!end);
+            do
+            {
+                end = BattleLoop(out winner);
+            } while (!end);
 
             //if (winner == 0)
             //{
-            //    SetNarration("승리했습니다! 레벨이 올랐습니다.");
-            //    Console.Clear();
-            //    BattleDisplay();
-            //    Console.ReadLine();
-
             //    (creatures[0] as Player).LevelUp();
-            //}
-            //else
-            //{
-            //    SetNarration("패배했습니다... 던전 입구로 돌아갑니다. 체력을 회복하고 정비한 뒤 다시 시도해 주십시오.");
-            //    Console.Clear();
-            //    BattleDisplay();
-            //    Console.ReadLine();
             //}
 
             return 0;
@@ -51,122 +39,115 @@ namespace SprtaDungeon.Scene.DungeonScene
 
         private bool BattleLoop(out int winner)
         {
-            Console.Clear();
-            //playerAction = GetPlayerCommand();
-            //monsterAction = GetEnemyCommand();
+            int damage;
 
-            //if (creatures[0].Speed > creatures[1].Speed)
-            //{
-            //    actionQueue.Enqueue(playerAction);
-            //    actionQueue.Enqueue(monsterAction);
-            //}
-            //else
-            //{
-            //    actionQueue.Enqueue(monsterAction);
-            //    actionQueue.Enqueue(playerAction);
-            //}
+            playerAction = GetPlayerCommand();
+            monsterAction = GetMonsterCommand();
 
-            int damage = 0;
+            /*
+             * 
+             ********** Battle Logic By Speed ************ 
+             * 
+             */
+
+            if (true)
+            {
+                actionQueue.Enqueue(playerAction);
+                actionQueue.Enqueue(monsterAction);
+            }
+            else
+            {
+                actionQueue.Enqueue(monsterAction);
+                actionQueue.Enqueue(playerAction);
+            }
 
             for (int i = 0; i < 2; i++)
             {
                 var action = actionQueue.Dequeue();
 
-                //// calculating damage
-                //switch (action.behavior)
-                //{
-                //    case Action.Behavior.BASIC_ATTACK:
-                //        damage = creatures[action.character].BasicAttack();
+                // calculating damage
+                switch (action.behavior)
+                {
+                    case Action.Behavior.BASIC_ATTACK:
 
-                //        SetNarration(creatures[action.character].Name + "의 공격!");
-                //        Console.Clear();
-                //        BattleDisplay();
-                //        Console.ReadLine();
-                //        break;
+                        //damage = creatures[(int)action.turn]
 
-                //    case Action.Behavior.ITEM:
-                //        creatures[action.character].UseItem(action.num);
-                //        break;
+                        break;
 
-                //    case Action.Behavior.QUIT:
-                //        winner = -1;
-                //        return true;
-                //}
+                    case Action.Behavior.SKILL_ATTACK:
 
-                //// apply damage
-                //if (action.behavior != Action.Behavior.ITEM)
-                //{
-                //    int defender;
-                //    int defense;
+                        //damage = creatures[(int)action.turn]
 
-                //    if (action.character == 0) defender = 1;
-                //    else defender = 0;
+                        break;
 
-                    //defense = creatures[defender].Defense;
+                    case Action.Behavior.ITEM:
+
+                        //creatures[(int)action.turn]
+
+                        break;
+
+                    case Action.Behavior.QUIT:
+
+                        winner = -1;
+
+                        return true;
+                }
+
+                // apply damage
+                if (action.behavior != Action.Behavior.ITEM)
+                {
+                    int defender;
+                    int defense;
+
+                    if (action.turn == Action.Creature.PLAYER) defender = (int)Action.Creature.MONSTER;
+                    else defender = (int)Action.Creature.PLAYER;
+
+                    /*
+                     * ******* TODO : BATTLE DAMAGE CALCULATING LOGIC
+                     */
+
+                    //defense = creatures[defender];
 
                     //damage -= defense;
 
-                    //if (damage <= 0) damage = 1;
+                    // TEMP CODE
+                    damage = 0;
+
+                    if (damage <= 0) damage = 1;
                     //creatures[defender].CurHP -= damage;
 
-                    //if (creatures[defender].CurHP <= 0)
-                    //{
-                    //    creatures[defender].CurHP = 0;
 
-                    //    SetNarrationDamage(damage, action.character);
-                    //    Console.Clear();
-                    //    BattleDisplay();
-                    //    Console.ReadLine();
+                    // IF DEFENDERS HP IS ZERO
+                    if (true)//creatures[defender].CurHP <= 0)
+                    {
+                        //creatures[defender].CurHP = 0;
 
-                    //    winner = action.character;
-                    //    return true;
-                    //}
+                        winner = (int)action.turn;
+                        return true;
+                    }
 
-                //    SetNarrationDamage(damage, action.character);
-                //    Console.Clear();
-                //    BattleDisplay();
-                //    Console.ReadLine();
-                //}
-                //else
-                //{
-                //    SetNarrationItem();
-                //    Console.Clear();
-                //    BattleDisplay();
-                //    Console.ReadLine();
-                //}
+                }
             }
 
             actionQueue.Clear();
-
-
-            //if (characters[0].CurHP <= 0)
-            //{
-            //    winner = 1;
-            //    return true;
-            //}
-            //else if (characters[1].CurHP <= 0)
-            //{
-            //    winner = 0;
-            //    return true;
-            //}
-            //else
-            //{
-            //    winner = -1;
-            //    return false;
-            //}
 
             winner = -1;
             return false;
         }
 
-        //private Action GetEnemyCommand()
-        //{
-        //    Action action = new Action
-        //    {
-        //        behavior = Action.Behavior.BASIC_ATTACK,
-        //        character = 1
-        //    };
-        //    return action;
-        //}
+        private Action GetPlayerCommand()
+        {
+            throw new NotImplementedException();
+        }
+
+        private Action GetMonsterCommand()
+        {
+            Action action = new Action
+            {
+                behavior = Action.Behavior.BASIC_ATTACK,
+                turn = Action.Creature.MONSTER
+            };
+            return action;
+        }
     }
 }
