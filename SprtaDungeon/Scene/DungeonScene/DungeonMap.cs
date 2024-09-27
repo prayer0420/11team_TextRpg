@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace SprtaDungeon
 {
-    internal class Monster
+    public class DungeonMap
     {
+        private int floor;
     }
 }

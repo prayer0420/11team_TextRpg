@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace SprtaDungeon
 {
-    internal class Program
+    internal class Inventory
     {
-        static void Main(string[] args)
-        {
-
-        }
     }
 }

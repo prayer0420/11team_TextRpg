@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace SprtaDungeon
 {
-    internal class Program
+    public class Monster
     {
-        static void Main(string[] args)
-        {
-
-        }
     }
 }

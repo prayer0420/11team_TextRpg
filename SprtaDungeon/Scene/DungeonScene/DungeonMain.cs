@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace SprtaDungeon
 {
-    internal class Program
+    internal class DungeonMain
     {
-        static void Main(string[] args)
-        {
+        public DungeonMain() 
+        { 
 
         }
     }
