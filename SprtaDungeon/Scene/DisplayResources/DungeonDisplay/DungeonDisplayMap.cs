@@ -7,19 +7,17 @@ using System.Threading.Tasks;
 
 namespace SprtaDungeon
 {
-    public class DungeonDisplayApplyDamage : Display
+    public class DungeonDisplayMap : Display
     {
-        public Point DisplayPoint { get; set; }
+        public Point        DisplayPoint { get; set; }
 
-        private Monster monster;
-        private int damage;
+        private DungeonMap  DungeonMap { get; set; }
+        public int          CurrentFloor { get; set; }
 
-        public DungeonDisplayApplyDamage(int x, int y, Monster monster, int damage)
+        public DungeonDisplayMap(DungeonMap dungeonMap)
         {
-            DisplayPoint = new Point(x, y);
-
-            this.monster = monster;
-            this.damage = damage;
+            this.DungeonMap = dungeonMap;
+            DisplayPoint = new Point(0, 0);
         }
 
         void Display.Display()
