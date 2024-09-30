@@ -9,7 +9,7 @@ using System.Xml.Linq;
 
 namespace SprtaDungeon
 {
-    internal class Player : Creature
+    public class Player : Creature
     {
         private int _inputNum;
 
@@ -110,7 +110,7 @@ namespace SprtaDungeon
         }
     }
 
-    internal class Knight : Player
+    public class Knight : Player
     {
         public Knight(string name)  //유저 이름
         {
@@ -123,7 +123,7 @@ namespace SprtaDungeon
         }
     }
 
-    internal class Archor : Player
+    public class Archor : Player
     {
         public Archor(string name)  //유저 이름
         {
@@ -136,7 +136,7 @@ namespace SprtaDungeon
         }
     }
 
-    internal class Mage : Player
+    public class Mage : Player
     {
         public Mage(string name)  //유저 이름
         {

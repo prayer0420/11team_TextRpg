@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SprtaDungeon
 {
-    internal class Creature
+    public class Creature
     {
         public int _Lv { get; protected set; }
         public string _Name { get; protected set; }
