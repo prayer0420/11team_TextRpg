@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SprtaDungeon.Scene.DisplayResources
 {
-    internal interface Display
+    public interface Display
     {
         Point DisplayPoint { get; set; }
 
