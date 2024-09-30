@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SprtaDungeon.Scene.DisplayResources;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,7 @@ namespace SprtaDungeon
     internal class Game
     {
         private static Game _instance;
+
         public static Game Instance
         {
             get
@@ -22,10 +24,15 @@ namespace SprtaDungeon
             private set { }
         }
 
+        private Inventory _inventory;
+
         public void GameStart()
         {
 
+        }
 
+        public void Inventory()
+        {
 
         }
     }

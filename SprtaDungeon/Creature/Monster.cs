@@ -8,14 +8,14 @@ using System.Xml.Linq;
 
 namespace SprtaDungeon
 {
-    internal class Monster : Creature
+    public class Monster : Creature
     {
         public override int Attack()
         {
             return _Atk;
         }
     }
-    internal class Minion : Monster
+    public class Minion : Monster
     {
         public Minion()
         {
@@ -26,7 +26,7 @@ namespace SprtaDungeon
             _Def = 3;
         }
     }
-    internal class Voidling : Monster
+    public class Voidling : Monster
     {
         public Voidling()
         {
@@ -37,7 +37,7 @@ namespace SprtaDungeon
             _Def = 5;
         }
     }
-    internal class CannonMinion : Monster
+    public class CannonMinion : Monster
     {
         public CannonMinion()
         {
