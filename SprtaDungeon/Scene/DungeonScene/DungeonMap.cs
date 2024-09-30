@@ -181,23 +181,20 @@ namespace SprtaDungeon
             CreateRoom();
             CreateEdges();
 
-            //for(int i = 0; i < rooms.Length; i ++)
-            //{
-            //    Console.WriteLine((i + 1) + "번째 층의 방 개수 : " + rooms[i].Length);
-            //}
+            for (int i = 0; i < rooms.Length; i++)
+            {
+                Console.WriteLine((i + 1) + "번째 층의 방 개수 : " + rooms[i].Length);
+            }
 
-            //for(int i = 0; i < edges.Length; i ++)
-            //{
-            //    Console.WriteLine((i + 1) + "번째 층과 다음 층을 잇는 엣지");
+            for (int i = 0; i < edges.Length; i++)
+            {
+                Console.WriteLine((i + 1) + "번째 층과 다음 층을 잇는 엣지");
 
-            //    for(int j = 0; j < edges[i].Count; j ++)
-            //    {
-            //        Console.WriteLine("(" + edges[i][j].Item1 + ", " + edges[i][j].Item2 + ")");
-            //    }
-            //}
-
-            Console.WriteLine("clear");
-
+                for (int j = 0; j < edges[i].Count; j++)
+                {
+                    Console.WriteLine("(" + edges[i][j].Item1 + ", " + edges[i][j].Item2 + ")");
+                }
+            }
         }
     }
 }
