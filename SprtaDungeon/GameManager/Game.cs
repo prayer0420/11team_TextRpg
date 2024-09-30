@@ -8,9 +8,21 @@ namespace SprtaDungeon
 {
     internal class Game
     {
+        private static Game _instance;
+        public static Game Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new Game();
+                }
+                return _instance;
+            }
+            private set { }
+        }
 
-
-        public void Start()
+        public void GameStart()
         {
 
 

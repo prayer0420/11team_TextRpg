@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SprtaDungeon
 {
-    internal class DungeonRoom
+    public class DungeonRoom
     {
         private DungeonBattle battle;
 
