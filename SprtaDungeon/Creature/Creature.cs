@@ -16,9 +16,12 @@ namespace SprtaDungeon
         public float _Critical { get; protected set; }
         public float _Avoid { get; protected set; }
         public int _Hp { get; protected set; }
+        public int _Mp { get; protected set; }
         public int _Exp { get; protected set; }
         public string _Job { get; protected set; }
         public int _Gold { get; private set; }
+
+
         public int _ExtraAtk { get; protected set; }
         public int _ExtraDef { get; protected set; }
 
