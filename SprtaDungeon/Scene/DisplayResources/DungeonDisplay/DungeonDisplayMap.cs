@@ -1,5 +1,4 @@
-﻿using SprtaDungeon.Scene.DisplayResources;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +12,7 @@ namespace SprtaDungeon
 
         private DungeonMap  DungeonMap { get; set; }
         public int          CurrentFloor { get; set; }
+        public string       Input { get; set; }
 
         public DungeonDisplayMap(DungeonMap dungeonMap)
         {

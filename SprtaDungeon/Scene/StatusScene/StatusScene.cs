@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace SprtaDungeon
 {
-    public interface Display
+    public class StatusScene : Scene
     {
-        string Input { get; set; }
-        Point DisplayPoint { get; set; }
-
-        void Display();
-        int Select();
+        int Scene.Start()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

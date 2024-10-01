@@ -1,5 +1,4 @@
-﻿using SprtaDungeon.Scene.DisplayResources;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,16 +23,23 @@ namespace SprtaDungeon
             private set { }
         }
 
-        private Inventory _inventory;
+        private Game()
+        {
+            sceneManager = SceneManager.Instance;
+        }
+
+        private SceneManager sceneManager;
 
         public void GameStart()
         {
+            int input = sceneManager.GetCreateScene().Start();
 
-        }
+            while (true)
+            {
+                input = sceneManager.GetScene((SceneManager.SceneType)input).Start();
 
-        public void Inventory()
-        {
-
+                if (input == -1) Environment.Exit(0);
+            }
         }
     }
 }

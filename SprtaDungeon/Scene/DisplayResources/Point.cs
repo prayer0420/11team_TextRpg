@@ -21,5 +21,11 @@ namespace SprtaDungeon
         {
             Console.SetCursorPosition(_x, _y);
         }
+        public void Set(int x, int y)
+        {
+            _x = x;
+            _y = y;
+            Console.SetCursorPosition(_x, _y);
+        }
     }
 }

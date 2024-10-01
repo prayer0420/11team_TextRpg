@@ -10,14 +10,18 @@ namespace SprtaDungeon
     {
         static void Main(string[] args)
         {
-            for(int i = 0; i < 1; i ++)
-            {
-                DungeonMap map = new DungeonMap(i);
+            //for(int i = 0; i < 1; i ++)
+            //{
+            //    DungeonMap map = new DungeonMap(i);
 
-                map.Debug();
-            }
+            //    map.Debug();
+            //}
 
-            Console.WriteLine("Complete");
+            //Console.WriteLine("Complete");
+
+            Game game = Game.Instance;
+
+            game.GameStart();
     
         }
     }
