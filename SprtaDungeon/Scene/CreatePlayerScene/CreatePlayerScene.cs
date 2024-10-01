@@ -18,14 +18,17 @@ namespace SprtaDungeon
             gameManager = GameManager.Instance;
         }
 
+        // 캐릭터 생성 신 시작
         public int Start()
         {
+            // 캐릭터 이름 설정
             display = new CreatePlayerDisplayName();
             display.Display();
             display.Select();
 
             playerName = display.Input;
 
+            // 캐릭터 직업 설정
             display = new CreatePlayerDisplay(playerName);
             display.Display();
             int job = display.Select();

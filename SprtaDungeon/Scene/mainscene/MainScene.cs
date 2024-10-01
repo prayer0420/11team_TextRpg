@@ -8,9 +8,18 @@ namespace SprtaDungeon
 {
     public class MainScene : Scene
     {
+        private Display display;
+
+        // 메인 신 시작
         int Scene.Start()
         {
-            throw new NotImplementedException();
+            display = new MainDisplay();
+
+            display.Display();
+            display.Select();
+
+
+            return 0;
         }
     }
 }
