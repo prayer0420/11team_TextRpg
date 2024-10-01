@@ -15,6 +15,7 @@ namespace SprtaDungeon
         public int _Def { get; protected set; }
         public float _Critical { get; protected set; }
         public float _Avoid { get; protected set; }
+        public int _Speed { get; protected set; }
         public int _Hp { get; protected set; }
         public int _Mp { get; protected set; }
         public int _Exp { get; protected set; }
@@ -58,6 +59,11 @@ namespace SprtaDungeon
         public virtual int Attack()//hit = true -> Player 공격, hit = false -> Monster공격
         {
             return _Atk;
+        }
+
+        public virtual int Speed()
+        {
+            return _Speed;
         }
     }
 }

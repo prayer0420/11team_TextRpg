@@ -21,12 +21,6 @@ namespace SprtaDungeon
            _Name = name;
         }
 
-
-        public void ExtraAtkDef()     //매개변수값 받아 추가 공격력, 방어력 더해주기
-        {
-
-        }
-
         public override int Attack() //공격력 출력, 공격력 출력할때 치명타 계산이 들어간 데미지가 나간다.
         {
             if (Critical())
@@ -38,6 +32,16 @@ namespace SprtaDungeon
             {
                 return _Atk;
             }
+        }
+
+        public override int Speed()
+        {
+            return _Speed;
+        }
+
+        public void ExtraAtkDef()     //매개변수값 받아 추가 공격력, 방어력 더해주기
+        {
+
         }
 
         public bool Critical()    //치명타 결과메서드 실행 시 true반환되면 치명타가 터진거다.
@@ -150,6 +154,7 @@ namespace SprtaDungeon
             _Job = "Knight";
             _Atk = 5;
             _Def = 10;
+            _Speed = 5;
             _Hp = 100;
             _Mp = 50;
 
@@ -166,6 +171,7 @@ namespace SprtaDungeon
             _Job = "Archor";
             _Atk = 8;
             _Def = 7;
+            _Speed = 10;
             _Hp = 80;
             _Mp = 50;
 
@@ -182,6 +188,7 @@ namespace SprtaDungeon
             _Job = "Mage";
             _Atk = 10;
             _Def = 4;
+            _Speed = 6;
             _Hp = 60;
             _Mp = 50;
 
