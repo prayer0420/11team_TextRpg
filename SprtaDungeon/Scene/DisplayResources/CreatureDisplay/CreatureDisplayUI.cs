@@ -6,21 +6,25 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SprtaDungeon.Scene.DisplayResources.CreatureDisplay
+namespace SprtaDungeon
 {
-    internal class CreatureDisplayUI
+    public class CreatureDisplayUI : Display
     {
         
         private Creature creature;
         private int _inputNum;
         private int count = 1;
 
+        public Point DisplayPoint { get; set; }
+        public string Input { get; set; }
+
         public CreatureDisplayUI(Creature creature)
         {
             this.creature = creature;
+            DisplayPoint = new Point(0, 0);
         }
 
-        public void DisplayPlayerStatUI() //케릭터 상태보기 씬
+        void Display.Display() //케릭터 상태보기 씬
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -44,7 +48,6 @@ namespace SprtaDungeon.Scene.DisplayResources.CreatureDisplay
             {
                 Console.WriteLine("잘못된 입력입니다.");
                 Thread.Sleep(500);
-                DisplayPlayerStatUI();
             }
         }
 
@@ -52,6 +55,11 @@ namespace SprtaDungeon.Scene.DisplayResources.CreatureDisplay
         {
             string monsterStat = $"Lv.{creature._Lv} {creature._Name.PadRight(4)} HP {creature._Hp}";
             Console.WriteLine(num == 0 ? monsterStat : $"{count++} " + monsterStat);
+        }
+
+        int Display.Select()
+        {
+            throw new NotImplementedException();
         }
     }
 }

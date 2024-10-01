@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace SprtaDungeon
 {
-    internal class Shop
+    public interface Scene
     {
+        int Start();
     }
 }

@@ -1,5 +1,4 @@
-﻿using SprtaDungeon.Scene.DisplayResources;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +9,7 @@ namespace SprtaDungeon
     public class DungeonDisplayApplyDamage : Display
     {
         public Point DisplayPoint { get; set; }
+        public string Input { get; set; }
 
         private Monster monster;
         private int damage;

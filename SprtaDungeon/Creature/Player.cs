@@ -15,6 +15,12 @@ namespace SprtaDungeon
 
         Random random = new Random();
 
+        public Player(string name)
+        {
+           _Name = name;
+        }
+
+
         public void ExtraAtkDef()     //매개변수값 받아 추가 공격력, 방어력 더해주기
         {
 
@@ -112,10 +118,9 @@ namespace SprtaDungeon
 
     public class Knight : Player
     {
-        public Knight(string name)  //유저 이름
+        public Knight(string name) : base(name)  //유저 이름
         {
             _Lv = 1;
-             _Name = name;
             _Job = "Knight";
             _Atk = 5;
             _Def = 10;
@@ -125,10 +130,9 @@ namespace SprtaDungeon
 
     public class Archor : Player
     {
-        public Archor(string name)  //유저 이름
+        public Archor(string name) : base(name)   //유저 이름
         {
             _Lv = 1;
-            _Name = name;
             _Job = "Archor";
             _Atk = 8;
             _Def = 7;
@@ -138,10 +142,9 @@ namespace SprtaDungeon
 
     public class Mage : Player
     {
-        public Mage(string name)  //유저 이름
+        public Mage(string name) : base(name)   //유저 이름
         {
             _Lv = 1;
-            _Name = name;
             _Job = "Mage";
             _Atk = 10;
             _Def = 5;
