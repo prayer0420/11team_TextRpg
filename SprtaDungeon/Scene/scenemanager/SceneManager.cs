@@ -75,17 +75,3 @@ namespace SprtaDungeon
         }
     }
 }
-
-/*
- *  scene[0] = MainScene
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- */

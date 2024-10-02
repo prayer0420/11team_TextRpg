@@ -14,12 +14,15 @@ namespace SprtaDungeon
         private Display             display;
         private Display             battleInfoDisplay;
 
-        public DungeonBattle(Creature[] monsters)
+        private Random              random;
+
+        public DungeonBattle(Creature[] monsters, int seed)
         {
             Creature[] player = new Creature[1] { GameManager.Instance.Player };
 
             creatures = player.Concat(monsters).ToArray();
             battleInfoDisplay = new DungeonDisplayBattleInfo(creatures);
+            random = new Random(seed);
         }
 
         public int StartBattle()
@@ -33,12 +36,12 @@ namespace SprtaDungeon
                 end = BattleLoop(out winner);
             } while (!end);
 
-            //if (winner == 0)
-            //{
-            //    (creatures[0] as Player).LevelUp();
-            //}
+            if (winner == 0)
+            {
+                (creatures[0] as Player).LvUp();
+            }
 
-            return 0;
+            return winner;
         }
 
         private bool BattleLoop(out int winner)
@@ -47,30 +50,41 @@ namespace SprtaDungeon
             GetMonsterCommand();
             SetTurnOrder();
 
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < actions.Length; i++)
             {
                 var action = actionQueue.Dequeue();
 
-                int damage;
+                Creature creature = creatures[action.creatureNum];
+                int attackDamage = 0;
+                bool critical = creature.Critical(random.Next(1, 101));
+                Player player = creature as Player;
 
                 // calculating damage
                 switch (action.behavior)
                 {
                     case Action.Behavior.BASIC_ATTACK:
 
-                        //damage = creatures[(int)action.turn]
+                        attackDamage = creature.Attack(critical);
 
                         break;
 
                     case Action.Behavior.SKILL_ATTACK:
 
-                        //damage = creatures[(int)action.turn]
+                        if(player == null) break;
+
+                        attackDamage = player.SkillAttack(action.skillNum, critical);
 
                         break;
 
                     case Action.Behavior.POTION:
 
-                        //creatures[(int)action.turn]
+                        if(player == null) break;
+
+                        int potionNum = action.itemNum;
+                        Potion potion = player.inventory.potions[potionNum];
+                        player.Heal(potion.PotionValue);
+                        potion.PotionCount--;
+                        if(potion.PotionCount <= 0) player.inventory.potions.Remove(potion);
 
                         break;
 
@@ -87,33 +101,25 @@ namespace SprtaDungeon
                     int defender;
                     int defense;
 
-                    if (action.turn == Action.Creature.PLAYER) defender = (int)Action.Creature.MONSTER;
+                    if (action.turn == Action.Creature.PLAYER) defender = action.targetNum;
                     else defender = (int)Action.Creature.PLAYER;
 
                     /*
                      * ******* TODO : BATTLE DAMAGE CALCULATING LOGIC
                      */
 
-                    //defense = creatures[defender];
+                    defense = creatures[defender]._Def;
 
-                    //damage -= defense;
-
-                    // TEMP CODE
-                    damage = 0;
-
-                    if (damage <= 0) damage = 1;
-                    //creatures[defender].CurHP -= damage;
+                    int finalDamage = attackDamage -= defense;
 
 
-                    // IF DEFENDERS HP IS ZERO
-                    if (true)//creatures[defender].CurHP <= 0)
-                    {
-                        //creatures[defender].CurHP = 0;
+                    if (finalDamage <= 0) finalDamage = 1;
 
-                        winner = (int)action.turn;
-                        return true;
-                    }
 
+                    creatures[defender].ApplyDamage(finalDamage);
+
+
+                    if (BattleFinished(out winner)) return true;
                 }
             }
 
@@ -121,6 +127,27 @@ namespace SprtaDungeon
 
             winner = -1;
             return false;
+
+            bool BattleFinished(out int win)
+            {
+                if (creatures[0]._CurHp <= 0)
+                {
+                    win = 1;
+                    return true;
+                }
+
+                for (int i = 1; i < creatures.Length; i++)
+                {
+                    if (creatures[i]._CurHp >= 0)
+                    {
+                        win = -1;
+                        return false;
+                    }
+                }
+
+                win = 0;
+                return true;
+            }
         }
 
         private void SetTurnOrder()
@@ -164,7 +191,7 @@ namespace SprtaDungeon
                 {
                     case Action.Behavior.BASIC_ATTACK:
 
-                        display = new DungeonDisplayBasicAttack(creatures.Length - 1);
+                        display = new DungeonDisplayBasicAttack(creatures.Length - 1, creatures);
                         display.Display();
                         target = display.Select();
 
@@ -183,7 +210,7 @@ namespace SprtaDungeon
 
                     case Action.Behavior.SKILL_ATTACK:
 
-                        display = new DungeonDisplaySkill(Console.CursorTop, creatures[0]);
+                        display = new DungeonDisplaySkill(Console.CursorTop, creatures);
                         display.Display();
                         int skillNum = display.Select();
 
@@ -253,8 +280,8 @@ namespace SprtaDungeon
                 {
                     behavior = Action.Behavior.BASIC_ATTACK,
                     turn = Action.Creature.MONSTER,
-                    creatureNum = 1,
-                    speed = 0,
+                    creatureNum = i,
+                    speed = creatures[i].Speed(),
                     targetNum = 0
                 };
             }
