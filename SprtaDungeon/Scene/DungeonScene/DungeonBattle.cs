@@ -10,14 +10,16 @@ namespace SprtaDungeon
     {
         private Creature[]          creatures;
         private Queue<Action>       actionQueue;
-        private Action              playerAction;
-        private Action              monsterAction;
+        private Action[]            actions;
+        private Display             display;
+        private Display             battleInfoDisplay;
 
         public DungeonBattle(Creature[] monsters)
         {
             Creature[] player = new Creature[1] { GameManager.Instance.Player };
 
             creatures = player.Concat(monsters).ToArray();
+            battleInfoDisplay = new DungeonDisplayBattleInfo(creatures);
         }
 
         public int StartBattle()
@@ -41,31 +43,15 @@ namespace SprtaDungeon
 
         private bool BattleLoop(out int winner)
         {
-            int damage;
-
-            playerAction = GetPlayerCommand();
-            monsterAction = GetMonsterCommand();
-
-            /*
-             * 
-             ********** Battle Logic By Speed ************ 
-             * 
-             */
-
-            if (true)
-            {
-                actionQueue.Enqueue(playerAction);
-                actionQueue.Enqueue(monsterAction);
-            }
-            else
-            {
-                actionQueue.Enqueue(monsterAction);
-                actionQueue.Enqueue(playerAction);
-            }
+            GetPlayerCommand();
+            GetMonsterCommand();
+            SetTurnOrder();
 
             for (int i = 0; i < 2; i++)
             {
                 var action = actionQueue.Dequeue();
+
+                int damage;
 
                 // calculating damage
                 switch (action.behavior)
@@ -82,7 +68,7 @@ namespace SprtaDungeon
 
                         break;
 
-                    case Action.Behavior.ITEM:
+                    case Action.Behavior.POTION:
 
                         //creatures[(int)action.turn]
 
@@ -96,7 +82,7 @@ namespace SprtaDungeon
                 }
 
                 // apply damage
-                if (action.behavior != Action.Behavior.ITEM)
+                if (action.behavior != Action.Behavior.POTION)
                 {
                     int defender;
                     int defense;
@@ -139,42 +125,139 @@ namespace SprtaDungeon
 
         private void SetTurnOrder()
         {
-            List<Creature> tempCreatures = creatures.ToList();
+            List<Action> actionList = actions.ToList();
 
-
-            for(int i = 0; i < creatures.Length - 1; i++) 
+            for(int i = 0; i < actions.Length - 1; i++) 
             {
-                int temp = i;
-                int tempSpeed = tempCreatures[temp].Speed();
-                for(int j = 0; j < creatures.Length; j++)
+                int temp = 0;
+                int tempSpeed = actionList[temp].speed;
+
+                for(int j = 0; j < actionList.Count; j++)
                 {
-                    if (tempSpeed < tempCreatures[j].Speed())
+                    if (tempSpeed < actionList[j].speed)
                     {
-                        tempSpeed = tempCreatures[j].Speed();
+                        tempSpeed = actionList[j].speed;
                         temp = j;
                     }
                 }
 
-                Action action = new Action()
-                {
-                    behavior = Action.Behavior.BASIC_ATTACK
-                };
+                actionQueue.Enqueue(actionList[temp]);
+                actionList.RemoveAt(temp);
             }
         }
 
-        private Action GetPlayerCommand()
+        private void GetPlayerCommand()
         {
-            throw new NotImplementedException();
+            while(true)
+            {
+                int target;
+
+                battleInfoDisplay.Display();
+
+                display = new DungeonDisplayPlayerCommand();
+                display.Display();
+                int playerBehavior = display.Select();
+
+                battleInfoDisplay.Display();
+
+                switch ((Action.Behavior)playerBehavior)
+                {
+                    case Action.Behavior.BASIC_ATTACK:
+
+                        display = new DungeonDisplayBasicAttack(creatures.Length - 1);
+                        display.Display();
+                        target = display.Select();
+
+                        if (target == 0) continue;
+
+                        actions[0] = new Action()
+                        {
+                            behavior = Action.Behavior.BASIC_ATTACK,
+                            turn = Action.Creature.PLAYER,
+                            creatureNum = 0,
+                            speed = creatures[0].Speed(),
+                            targetNum = target
+                        };
+
+                        break;
+
+                    case Action.Behavior.SKILL_ATTACK:
+
+                        display = new DungeonDisplaySkill(Console.CursorTop, creatures[0]);
+                        display.Display();
+                        int skillNum = display.Select();
+
+                        if (skillNum == 0) continue;
+
+                        battleInfoDisplay.Display();
+
+                        display = new DungeonDisplaySkill(creatures.Length - 1);
+                        display.Display();
+                        target = display.Select();
+
+                        if (target == 0) continue;
+
+                        actions[0] = new Action()
+                        {
+                            behavior = Action.Behavior.SKILL_ATTACK,
+                            turn = Action.Creature.PLAYER,
+                            creatureNum = 0,
+                            speed = creatures[0].Speed(),
+                            skillNum = skillNum,
+                            targetNum = target
+                        };
+
+                        break;
+
+                    case Action.Behavior.POTION:
+
+                        display = new InventoryDisplayPotion(true, false, (creatures[0] as Player).inventory.potions);
+                        display.Display();
+                        int potion = display.Select();
+
+                        if (potion == 0) continue;
+
+                        actions[0] = new Action()
+                        {
+                            behavior = Action.Behavior.POTION,
+                            turn = Action.Creature.PLAYER,
+                            creatureNum = 0,
+                            speed = creatures[0].Speed(),
+                            itemNum = potion
+                        };
+
+                        break;
+
+                    case Action.Behavior.QUIT:
+
+                        actions[0] = new Action()
+                        {
+                            behavior = Action.Behavior.QUIT,
+                            turn = Action.Creature.PLAYER,
+                            creatureNum = 0,
+                            speed = int.MaxValue
+                        };
+
+                        break;
+                }
+
+                break;
+            }
         }
 
-        private Action GetMonsterCommand()
+        private void GetMonsterCommand()
         {
-            Action action = new Action
+            for(int i = 1; i < creatures.Length; i++)
             {
-                behavior = Action.Behavior.BASIC_ATTACK,
-                turn = Action.Creature.MONSTER
-            };
-            return action;
+                actions[i] = new Action
+                {
+                    behavior = Action.Behavior.BASIC_ATTACK,
+                    turn = Action.Creature.MONSTER,
+                    creatureNum = 1,
+                    speed = 0,
+                    targetNum = 0
+                };
+            }
         }
     }
 }

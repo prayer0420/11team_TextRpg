@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SprtaDungeon
 {
-    class Item
+    public class Item
     {
         public string Name { get; }
         public int Type { get; }
@@ -21,7 +21,7 @@ namespace SprtaDungeon
                 return Type == 0 ? "공격력" : "방어력";
             }
         }
-              public string ItemInfoText()
+        public string ItemInfoText()
         {
             return $"{Name}  |  {DisplayTypeText} +{Value}  |  {Desc}";
         }

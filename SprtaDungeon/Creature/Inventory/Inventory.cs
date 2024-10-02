@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace SprtaDungeon
 {
-    class Inventory
+    public class Inventory
     {
+        public List<Item> inventory = new List<Item>();
+        public List<Item> equipList = new List<Item>();
 
-        private List<Item> inventory = new List<Item>();
-        private List<Item> EquipList = new List<Item>();
+        public List<Potion> potions = new List<Potion>();
 
-        Player player = (Player)GameManager.Instance.Player;
+        Player player = GameManager.Instance.Player as Player;
 
         public int InventoryCount
         {
@@ -38,7 +39,7 @@ namespace SprtaDungeon
         {
             if (IsEquipped(item))
             {
-                EquipList.Remove(item);
+                equipList.Remove(item);
                 if (item.Type == 0)
                 {
                     /*ExtraAtk*/
@@ -51,7 +52,7 @@ namespace SprtaDungeon
             }
             else
             {
-                EquipList.Add(item);
+                equipList.Add(item);
                 if (item.Type == 0)
                     /*ExtraAtk*/
                     player.ExtraAtkDef(item.Value);
@@ -64,7 +65,7 @@ namespace SprtaDungeon
 
         public bool IsEquipped(Item item)
         {
-            return EquipList.Contains(item);
+            return equipList.Contains(item);
         }
 
         public void BuyItem(Item item)

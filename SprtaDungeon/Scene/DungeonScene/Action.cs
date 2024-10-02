@@ -12,7 +12,7 @@ namespace SprtaDungeon
         {
             BASIC_ATTACK,
             SKILL_ATTACK,
-            ITEM,
+            POTION,
             QUIT
         }
 
@@ -24,8 +24,11 @@ namespace SprtaDungeon
 
         public Behavior         behavior;
         public Creature         turn;
-        public int              monsterNum; // 1~3
-        public int              num;
+        public int              creatureNum; // 1~3 if Monster
         public int              speed;
+
+        public int              targetNum;
+        public int              skillNum;
+        public int              itemNum;
     }
 }

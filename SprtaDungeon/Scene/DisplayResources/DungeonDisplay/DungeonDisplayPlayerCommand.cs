@@ -7,34 +7,34 @@ using System.Threading.Tasks;
 
 namespace SprtaDungeon
 {
-    public class CreatePlayerDisplay : Display
+    public class DungeonDisplayPlayerCommand : Display
     {
-        public string Input { get; set; }
         public Point DisplayPoint { get; set; }
+        public string Input { get; set; }
 
-        private string playerName;
-
-        public CreatePlayerDisplay(string playerName)
+        public DungeonDisplayPlayerCommand()
         {
-            this.playerName = playerName;
             DisplayPoint = new Point(0, 0);
         }
 
-        public void Display()
+        void Display.Display()
         {
-            Console.Clear();
-            Console.WriteLine("당신의 이름은 " + playerName + "입니다.\n다음은 직업을 정해주십시오.\n\n1. 기사\n2. 궁수\n3. 마법사\n\n직업 번호를 입력해 주십시오.");
-            // 여기까지 6줄
+            Console.WriteLine("1. 공격\n" +
+                              "2. 스킬\n" +
+                              "3. 포션\n" +
+                              "4. 도망친다\n" +
+                              "\n" + 
+                              "원하시는 행동을 입력해주세요.");
         }
 
         int Display.Select()
         {
-            while(true)
+            while (true)
             {
                 Console.Write(">> ");
                 Input = Console.ReadLine();
 
-                if (int.TryParse(Input, out int result) && result > 0 && result < 4) return result;
+                if (int.TryParse(Input, out int result) && result > 0 && result < 5) return result - 1;
 
                 Console.Write("다시 입력해 주십시오...");
                 Thread.Sleep(500);
