@@ -78,6 +78,7 @@
     <Compile Include="Scene\DisplayResources\DungeonDisplay\DungeonDisplayMap.cs" />
     <Compile Include="Scene\DisplayResources\MainDisplay\MainDisplay.cs" />
     <Compile Include="Scene\DisplayResources\Point.cs" />
+    <Compile Include="Scene\DisplayResources\QuestDisplay\QuestDisplay.cs" />
     <Compile Include="Scene\DungeonScene\Action.cs" />
     <Compile Include="Scene\DungeonScene\DungeonBattle.cs" />
     <Compile Include="Scene\DungeonScene\DungeonMap.cs" />
@@ -98,7 +99,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scene\DisplayResources\InventoryDisplay\" />
-    <Folder Include="Scene\DisplayResources\QuestDisplay\" />
     <Folder Include="Scene\DisplayResources\ShopDisplay\" />
     <Folder Include="Skill\" />
   </ItemGroup>
