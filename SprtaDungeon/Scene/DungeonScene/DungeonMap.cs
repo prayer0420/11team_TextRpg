@@ -166,7 +166,16 @@ namespace SprtaDungeon
         {
             List<int> nextRooms = new List<int>();
 
-            for(int i = 0; i < edges[currentRoom.Value.floor].Count; i++)
+            if (currentRoom == null)
+            {
+                for (int i = 0; i < rooms[0].Length; i++)
+                {
+                    nextRooms.Add(i);
+                }
+                return nextRooms;
+            }
+
+            for (int i = 0; i < edges[currentRoom.Value.floor].Count; i++)
             {
                 if (edges[currentRoom.Value.floor][i].domain == currentRoom.Value.roomNum) nextRooms.Add(i);
             }
