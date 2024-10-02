@@ -6,24 +6,27 @@ using System.Threading.Tasks;
 
 namespace SprtaDungeon
 {
-    internal class Inventory
+    class Inventory
     {
 
-        private List<Item> Inventory = new List<Item>();
+        private List<Item> inventory = new List<Item>();
         private List<Item> EquipList = new List<Item>();
+
+        Player player = (Player)GameManager.Instance.Player;
+
         public int InventoryCount
         {
             get
             {
-                return Inventory.Count;
+                return inventory.Count;
             }
         }
 
         public void DisplayInventory(bool showIdx)
         {
-            for (int i = 0; i < Inventory.Count; i++)
+            for (int i = 0; i < inventory.Count; i++)
             {
-                Item targetItem = Inventory[i];
+                Item targetItem = inventory[i];
 
                 string displayIdx = showIdx ? $"{i + 1} " : "";
                 string displayEquipped = IsEquipped(targetItem) ? "[E]" : "";
@@ -37,17 +40,25 @@ namespace SprtaDungeon
             {
                 EquipList.Remove(item);
                 if (item.Type == 0)
-                    /*ExtraAtk*/ -= item.Value;
+                {
+                    /*ExtraAtk*/
+                    player.ExtraAtkDef(item.Value);
+                }
                 else
-                    /*ExtraDef*/ -= item.Value;
+                    /*ExtraDef*/
+                    player.ExtraAtkDef(item.Value);
+
             }
             else
             {
                 EquipList.Add(item);
                 if (item.Type == 0)
-                    /*ExtraAtk*/ += item.Value;
+                    /*ExtraAtk*/
+                    player.ExtraAtkDef(item.Value);
+
                 else
-                    /*ExtraDef*/ += item.Value;
+                    /*ExtraDef*/
+                    player.ExtraAtkDef(item.Value);
             }
         }
 
@@ -58,13 +69,13 @@ namespace SprtaDungeon
 
         public void BuyItem(Item item)
         {
-            /*Gold*/ -= item.Price;
-            Inventory.Add(item);
+            GameManager.Instance.Player._Gold -= item.Price;
+            inventory.Add(item);
         }
 
         public bool HasItem(Item item)
         {
-            return Inventory.Contains(item);
+            return inventory.Contains(item);
         }
     }
 }
