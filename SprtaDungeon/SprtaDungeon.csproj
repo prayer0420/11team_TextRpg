@@ -75,9 +75,16 @@
     <Compile Include="Scene\DisplayResources\CreatePlayerDisplay\CreatePlayerDisplayName.cs" />
     <Compile Include="Scene\DisplayResources\CreatePlayerDisplay\CreatePlayerDisplay.cs" />
     <Compile Include="Scene\DisplayResources\CreatureDisplay\CreatureDisplay.cs" />
+    <Compile Include="Scene\DisplayResources\InventoryDisplay\InventoryDisplayItem.cs" />
+    <Compile Include="Scene\DisplayResources\InventoryDisplay\InventoryDisplayPotion.cs" />
+    <Compile Include="Scene\DisplayResources\CreatureDisplay\SkillDisplay.cs" />
     <Compile Include="Scene\DisplayResources\Display.cs" />
     <Compile Include="Scene\DisplayResources\DungeonDisplay\DungeonDisplayApplyDamage.cs" />
+    <Compile Include="Scene\DisplayResources\DungeonDisplay\DungeonDisplayBasicAttack.cs" />
+    <Compile Include="Scene\DisplayResources\DungeonDisplay\DungeonDisplayBattleInfo.cs" />
     <Compile Include="Scene\DisplayResources\DungeonDisplay\DungeonDisplayMap.cs" />
+    <Compile Include="Scene\DisplayResources\DungeonDisplay\DungeonDisplayPlayerCommand.cs" />
+    <Compile Include="Scene\DisplayResources\DungeonDisplay\DungeonDisplaySkill.cs" />
     <Compile Include="Scene\DisplayResources\MainDisplay\MainDisplay.cs" />
     <Compile Include="Scene\DisplayResources\Point.cs" />
     <Compile Include="Scene\DisplayResources\QuestDisplay\QuestDisplay.cs" />
@@ -100,7 +107,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Scene\DisplayResources\InventoryDisplay\" />
     <Folder Include="Scene\DisplayResources\ShopDisplay\" />
   </ItemGroup>
   <ItemGroup>

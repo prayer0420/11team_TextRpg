@@ -16,6 +16,8 @@ namespace SprtaDungeon
         private bool                    isBattle;
         private int                     count = 1;
 
+        private Display                 skillDisplay;
+
         public Point DisplayPoint { get; set; }
         public string Input { get; set; }
 
@@ -37,7 +39,12 @@ namespace SprtaDungeon
             Console.ResetColor();
             Console.WriteLine("캐릭터의 정보가 표시됩니다.\n");
             CreatureStatus();
-            Console.WriteLine("\n0.나가기\n");
+
+            Console.WriteLine("\n보유 스킬 : ");
+            skillDisplay = new SkillDisplay(Console.CursorTop, creature, false);
+            skillDisplay.Display();
+
+            Console.WriteLine("0.나가기\n");
             Console.WriteLine("원하시는 행동을 입력해주세요.");
         }
 
@@ -57,13 +64,12 @@ namespace SprtaDungeon
 
             Console.WriteLine((creature._ExtraAtk == 0) ? $"공격력 : {creature._Atk}" : $"공격력 : {creature._Atk + creature._ExtraAtk} (+{creature._ExtraAtk})");
             Console.WriteLine((creature._ExtraDef == 0) ? $"방어력 : {creature._Def}" : $"공격력 : {creature._Def + creature._ExtraDef} (+{creature._ExtraDef})");
+            Console.WriteLine($"스피드 : {creature._Speed}");
 
             if (isPlayer && !isBattle)
             {
                 Console.WriteLine($"Gold : {creature._Gold}");
             }
-
-            // 여기까지 13
         }
 
         int Display.Select()
@@ -78,9 +84,9 @@ namespace SprtaDungeon
                 Console.Write("다시 입력해 주십시오...");
                 Thread.Sleep(500);
 
-                DisplayPoint.Set(0, 13);
+                DisplayPoint.Set(0, Console.CursorTop - 1);
                 Console.Write("                                                                                                                \n                       ");
-                DisplayPoint.Set(0, 13);
+                DisplayPoint.Set(0, Console.CursorTop - 1);
             }
         }
     }

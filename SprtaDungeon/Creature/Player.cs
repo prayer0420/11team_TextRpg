@@ -13,12 +13,14 @@ namespace SprtaDungeon
     {
         private int _inputNum;
         public List<Skill> skills = new List<Skill>();
+        public Inventory inventory;
 
         Random random = new Random();
 
         public Player(string name)
         {
            _Name = name;
+            inventory = new Inventory();
         }
 
         public override int Attack() //공격력 출력, 공격력 출력할때 치명타 계산이 들어간 데미지가 나간다.
