@@ -14,7 +14,13 @@ namespace SprtaDungeon
         {
             return _Atk;
         }
+
+        public override int Speed()
+        {
+            return _Speed;
+        }
     }
+
     public class Minion : Monster
     {
         public Minion()
@@ -24,6 +30,7 @@ namespace SprtaDungeon
             _Hp = 15;
             _Atk = 5;
             _Def = 3;
+            _Speed = 4;
         }
     }
     public class Voidling : Monster
@@ -35,6 +42,7 @@ namespace SprtaDungeon
             _Hp = 10;
             _Atk = 9;
             _Def = 5;
+            _Speed = 6;
         }
     }
     public class CannonMinion : Monster
@@ -46,6 +54,7 @@ namespace SprtaDungeon
             _Hp = 25;
             _Atk = 8;
             _Def = 8;
+            _Speed = 3;
         }
     }
 }

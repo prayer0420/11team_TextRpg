@@ -12,6 +12,7 @@ namespace SprtaDungeon
     public class Player : Creature
     {
         private int _inputNum;
+        public List<Skill> skills = new List<Skill>();
 
         Random random = new Random();
 
@@ -20,23 +21,27 @@ namespace SprtaDungeon
            _Name = name;
         }
 
-
-        public void ExtraAtkDef()     //매개변수값 받아 추가 공격력, 방어력 더해주기
-        {
-
-        }
-
         public override int Attack() //공격력 출력, 공격력 출력할때 치명타 계산이 들어간 데미지가 나간다.
         {
             if (Critical())
             {
-                return (int)Math.Round(_Atk * 1.6f);
                 Console.WriteLine("치명타 공격");
+                return (int)Math.Round(_Atk * 1.6f);
             }
             else
             {
                 return _Atk;
             }
+        }
+
+        public override int Speed()
+        {
+            return _Speed;
+        }
+
+        public void ExtraAtkDef()     //매개변수값 받아 추가 공격력, 방어력 더해주기
+        {
+
         }
 
         public bool Critical()    //치명타 결과메서드 실행 시 true반환되면 치명타가 터진거다.
@@ -114,6 +119,31 @@ namespace SprtaDungeon
             _Atk += 1;
             _Def += 2;
         }
+
+        public void SkillListAdd(Skill skill)
+        {
+            skills.Add(skill);
+        }
+
+        public void SkillUI(int indexnum)       //이거 어떻게 Display로 옮기지...?
+        {
+            int num = indexnum - 1;
+            Console.WriteLine($"{indexnum}. {skills[num]._SkillName} -  Mp {skills[num]._SkillMp}");
+            Console.WriteLine($"   {skills[num]._SkillExplanation}");
+        }
+
+        public int SkillAttack(int indexnum)        //스킬 공격(치명타 적용됨)
+        {
+            if (Critical())
+            {
+                Console.WriteLine("치명타 공격");
+                return (int)Math.Round(skills[indexnum]._SkillAtk * _Atk * 1.6f);
+            }
+            else
+            {
+                return (int)Math.Round(skills[indexnum]._SkillAtk * _Atk);
+            }
+        }
     }
 
     public class Knight : Player
@@ -124,7 +154,12 @@ namespace SprtaDungeon
             _Job = "Knight";
             _Atk = 5;
             _Def = 10;
+            _Speed = 5;
             _Hp = 100;
+            _Mp = 50;
+
+            SkillListAdd(new Skill("알파 스트라이크", "공격력 * 2 로 하나의 적을 공격합니다.", 10, 2.0f, 1));
+            SkillListAdd(new Skill("더블 스트라이크", "공격력 * 1.5 로 2명의 적을 랜덤으로 공격합니다.", 15, 1.5f, 2));
         }
     }
 
@@ -136,7 +171,12 @@ namespace SprtaDungeon
             _Job = "Archor";
             _Atk = 8;
             _Def = 7;
+            _Speed = 10;
             _Hp = 80;
+            _Mp = 50;
+
+            SkillListAdd(new Skill("헤드샷", "공격력 * 2.5 로 하나의 적을 공격합니다.", 10, 2.5f, 1));
+            SkillListAdd(new Skill("다중사격", "공격력 * 2.0 로 2명의 적을 랜덤으로 공격합니다.", 15, 2.0f, 2));
         }
     }
 
@@ -147,8 +187,13 @@ namespace SprtaDungeon
             _Lv = 1;
             _Job = "Mage";
             _Atk = 10;
-            _Def = 5;
-            _Hp = 70;
+            _Def = 4;
+            _Speed = 6;
+            _Hp = 60;
+            _Mp = 50;
+
+            SkillListAdd(new Skill("화염 강타", "공격력 * 3.0 로 하나의 적을 공격합니다.", 10, 3.0f, 1));
+            SkillListAdd(new Skill("화염 폭발", "공격력 * 2.5 로 3명의 적을 랜덤으로 공격합니다.", 15, 2.5f, 3));
         }
     }
 }
