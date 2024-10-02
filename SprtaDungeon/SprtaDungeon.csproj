@@ -65,6 +65,7 @@
     <Compile Include="GameData\GameData.cs" />
     <Compile Include="GameManager\GameManager.cs" />
     <Compile Include="Item\Item.cs" />
+    <Compile Include="Item\Potion.cs" />
     <Compile Include="Creature\Monster.cs" />
     <Compile Include="Creature\Player.cs" />
     <Compile Include="Program.cs" />
