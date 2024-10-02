@@ -22,9 +22,10 @@ namespace SprtaDungeon
             MONSTER
         }
 
-        public Behavior behavior;
-        public Creature turn;
-        public int monsterNum; // 1~3
-        public int num;
+        public Behavior         behavior;
+        public Creature         turn;
+        public int              monsterNum; // 1~3
+        public int              num;
+        public int              speed;
     }
 }

@@ -137,6 +137,31 @@ namespace SprtaDungeon
             return false;
         }
 
+        private void SetTurnOrder()
+        {
+            List<Creature> tempCreatures = creatures.ToList();
+
+
+            for(int i = 0; i < creatures.Length - 1; i++) 
+            {
+                int temp = i;
+                int tempSpeed = tempCreatures[temp].Speed();
+                for(int j = 0; j < creatures.Length; j++)
+                {
+                    if (tempSpeed < tempCreatures[j].Speed())
+                    {
+                        tempSpeed = tempCreatures[j].Speed();
+                        temp = j;
+                    }
+                }
+
+                Action action = new Action()
+                {
+                    behavior = Action.Behavior.BASIC_ATTACK
+                };
+            }
+        }
+
         private Action GetPlayerCommand()
         {
             throw new NotImplementedException();
