@@ -44,11 +44,11 @@ namespace SprtaDungeon
 
 
         //퀘스트의 목표량보다 현재 진행량이 작다면 아직 미완료
-        bool IsCompleted()
+        public bool IsCompleted()
         {
             foreach (var objective in Objectives)
             {
-                if (Progress[objective.Key] < objective.Value)
+                if (!Progress.ContainsKey(objective.Key) || Progress[objective.Key] < objective.Value)
                 {
                     return false;
                 }
