@@ -8,14 +8,16 @@ namespace SprtaDungeon
 {
     internal class DungeonBattle
     {
-        private Creature[] creatures;
-        private Queue<Action> actionQueue;
-        private Action playerAction;
-        private Action monsterAction;
+        private Creature[]          creatures;
+        private Queue<Action>       actionQueue;
+        private Action              playerAction;
+        private Action              monsterAction;
 
-        public DungeonBattle()
+        public DungeonBattle(Creature[] monsters)
         {
+            Creature[] player = new Creature[1] { GameManager.Instance.Player };
 
+            creatures = player.Concat(monsters).ToArray();
         }
 
         public int StartBattle()

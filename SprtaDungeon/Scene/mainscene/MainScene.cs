@@ -8,6 +8,7 @@ namespace SprtaDungeon
 {
     public class MainScene : Scene
     {
+        private int sceneSelect;
         private Display display;
 
         // 메인 신 시작
@@ -16,10 +17,9 @@ namespace SprtaDungeon
             display = new MainDisplay();
 
             display.Display();
-            display.Select();
+            sceneSelect = display.Select();
 
-
-            return 0;
+            return sceneSelect;
         }
     }
 }
