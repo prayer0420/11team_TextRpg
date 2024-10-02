@@ -16,16 +16,17 @@ namespace SprtaDungeon
         private int             monsterAmount;
         private bool            targetSelect;
         private Display         skillDisplay;
+        private Creature[]      creatures;
 
-
-        public DungeonDisplaySkill(int cursorY, Creature player)
+        public DungeonDisplaySkill(int cursorY, Creature[] creatures)
         {
             DisplayPoint = new Point(0, 0);
             targetSelect = false;
             monsterAmount = 0;
+            this.creatures = creatures;
 
-            skillCount = (player as Player).skills.Count;
-            skillDisplay = new SkillDisplay(cursorY, player, true);
+            skillCount = (creatures[0] as Player).skills.Count;
+            skillDisplay = new SkillDisplay(cursorY, creatures[0], true);
         }
         public DungeonDisplaySkill(int monsterAmount)
         {
@@ -59,7 +60,11 @@ namespace SprtaDungeon
                 Console.Write(">> ");
                 Input = Console.ReadLine();
 
-                if (int.TryParse(Input, out int result) && result > -1 && result < resultMax) return result;
+                if (int.TryParse(Input, out int result) && result > -1 && result < resultMax)
+                {
+                    if (creatures[result]._CurHp > 0) return result;
+                    Console.Write("이미 쓰러진 적입니다. ");
+                }
 
                 Console.Write("다시 입력해 주십시오...");
                 Thread.Sleep(500);

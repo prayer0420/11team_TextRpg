@@ -10,7 +10,7 @@ namespace SprtaDungeon
     {
         public string PotionName { get; }
         public int PotionValue { get; }
-        public int PotionCount { get; }
+        public int PotionCount { get; set; }
 
         // 상점에서 구매 가능?
         public int Price { get; }

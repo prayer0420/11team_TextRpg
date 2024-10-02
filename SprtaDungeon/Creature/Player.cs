@@ -23,17 +23,22 @@ namespace SprtaDungeon
             inventory = new Inventory();
         }
 
-        public override int Attack() //공격력 출력, 공격력 출력할때 치명타 계산이 들어간 데미지가 나간다.
+        public override int Attack(bool critical) //공격력 출력, 공격력 출력할때 치명타 계산이 들어간 데미지가 나간다.
         {
-            if (Critical())
+            if (critical)
             {
-                Console.WriteLine("치명타 공격");
                 return (int)Math.Round(_Atk * 1.6f);
             }
             else
             {
                 return _Atk;
             }
+        }
+
+        public override bool Critical(int randomValue)    //치명타 결과메서드 실행 시 true반환되면 치명타가 터진거다.
+        {
+            int criticalnum = (int)(_Critical * 100);
+            return randomValue < criticalnum;
         }
 
         public override int Speed()
@@ -44,32 +49,6 @@ namespace SprtaDungeon
         public void ExtraAtkDef(int value)     //매개변수값 받아 추가 공격력, 방어력 더해주기
         {
 
-        }
-
-        public bool Critical()    //치명타 결과메서드 실행 시 true반환되면 치명타가 터진거다.
-        {
-            int randomvalue = random.Next(0, 100);
-            int criticalnum = (int)(_Critical * 100);
-            return Percent(randomvalue, criticalnum);
-        }
-
-        public bool Avoid()         //회피 결과 메서드 실행 시 true로 반환되면 회피한거다.
-        {
-            int randomvalue = random.Next(0, 100);
-            int avoidnum = (int)(_Avoid * 100);
-            return Percent(randomvalue, avoidnum);
-        }
-
-        public bool Percent(int min, int max)   //치명타, 회피 계산 메서드
-        {
-            if (min < max)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
         }
 
         public string ExpGet(int exp)                    //경험치를 던전이나 퀘스트에서 받아야한다.!!!
@@ -115,6 +94,12 @@ namespace SprtaDungeon
             return $"현재 경험치는 {_Exp} 입니다";
         }
 
+        public void Heal(int value)
+        {
+            _CurHp += value;
+            if(_CurHp > _MaxHp) _CurHp = _MaxHp;
+        }
+
         public void LvUp()  //레벨업 할때 계산되는 함수
         {
             _Lv++;
@@ -134,11 +119,10 @@ namespace SprtaDungeon
             Console.WriteLine($"   {skills[num]._SkillExplanation}");
         }
 
-        public int SkillAttack(int indexnum)        //스킬 공격(치명타 적용됨)
+        public int SkillAttack(int indexnum, bool critical)        //스킬 공격(치명타 적용됨)
         {
-            if (Critical())
+            if (critical)
             {
-                Console.WriteLine("치명타 공격");
                 return (int)Math.Round(skills[indexnum]._SkillAtk * _Atk * 1.6f);
             }
             else
@@ -157,8 +141,9 @@ namespace SprtaDungeon
             _Atk = 5;
             _Def = 10;
             _Speed = 5;
-            _Hp = 100;
+            _MaxHp = 100;
             _Mp = 50;
+            _CurHp = _MaxHp;
 
             SkillListAdd(new Skill("알파 스트라이크", "공격력 * 2 로 하나의 적을 공격합니다.", 10, 2.0f, 1));
             SkillListAdd(new Skill("더블 스트라이크", "공격력 * 1.5 로 2명의 적을 랜덤으로 공격합니다.", 15, 1.5f, 2));
@@ -174,8 +159,9 @@ namespace SprtaDungeon
             _Atk = 8;
             _Def = 7;
             _Speed = 10;
-            _Hp = 80;
+            _MaxHp = 80;
             _Mp = 50;
+            _CurHp = _MaxHp;
 
             SkillListAdd(new Skill("헤드샷", "공격력 * 2.5 로 하나의 적을 공격합니다.", 10, 2.5f, 1));
             SkillListAdd(new Skill("다중사격", "공격력 * 2.0 로 2명의 적을 랜덤으로 공격합니다.", 15, 2.0f, 2));
@@ -191,8 +177,9 @@ namespace SprtaDungeon
             _Atk = 10;
             _Def = 4;
             _Speed = 6;
-            _Hp = 60;
+            _MaxHp = 60;
             _Mp = 50;
+            _CurHp = _MaxHp;
 
             SkillListAdd(new Skill("화염 강타", "공격력 * 3.0 로 하나의 적을 공격합니다.", 10, 3.0f, 1));
             SkillListAdd(new Skill("화염 폭발", "공격력 * 2.5 로 3명의 적을 랜덤으로 공격합니다.", 15, 2.5f, 3));

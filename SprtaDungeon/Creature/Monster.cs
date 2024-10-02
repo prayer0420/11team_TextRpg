@@ -10,7 +10,7 @@ namespace SprtaDungeon
 {
     public class Monster : Creature
     {
-        public override int Attack()
+        public override int Attack(bool critical)
         {
             return _Atk;
         }
@@ -27,7 +27,7 @@ namespace SprtaDungeon
         {
             _Name = "미니언";
             _Lv = 2;
-            _Hp = 15;
+            _MaxHp = 15;
             _Atk = 5;
             _Def = 3;
             _Speed = 4;
@@ -39,7 +39,7 @@ namespace SprtaDungeon
         {
             _Name = "공허충";
             _Lv = 3;
-            _Hp = 10;
+            _MaxHp = 10;
             _Atk = 9;
             _Def = 5;
             _Speed = 6;
@@ -51,7 +51,7 @@ namespace SprtaDungeon
         {
             _Name = "대포미니언";
             _Lv = 5;
-            _Hp = 25;
+            _MaxHp = 25;
             _Atk = 8;
             _Def = 8;
             _Speed = 3;

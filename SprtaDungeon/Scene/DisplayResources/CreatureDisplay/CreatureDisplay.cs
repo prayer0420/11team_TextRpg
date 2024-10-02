@@ -54,11 +54,11 @@ namespace SprtaDungeon
             {
                 Console.WriteLine($"Lv. {creature._Lv:D2}");
                 Console.WriteLine($"Chad ( {creature._Job} )");
-                Console.WriteLine($"HP : {creature._Hp}");
+                Console.WriteLine($"HP : {creature._CurHp} / {creature._MaxHp}");
             }
             else
             {
-                string monsterStat = $"Lv.{creature._Lv} {creature._Name.PadRight(4)} HP {creature._Hp}";
+                string monsterStat = $"Lv.{creature._Lv} {creature._Name.PadRight(4)} HP {creature._CurHp} / {creature._MaxHp}";
                 Console.WriteLine(isDisplayNumber ? monsterStat : $"{count++} " + monsterStat);
             }
 

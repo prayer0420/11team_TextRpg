@@ -16,7 +16,8 @@ namespace SprtaDungeon
         public float _Critical { get; protected set; }
         public float _Avoid { get; protected set; }
         public int _Speed { get; protected set; }
-        public int _Hp { get; protected set; }
+        public int _MaxHp { get; protected set; }
+        public int _CurHp { get; protected set; }
         public int _Mp { get; protected set; }
         public int _Exp { get; protected set; }
         public string _Job { get; protected set; }
@@ -56,14 +57,30 @@ namespace SprtaDungeon
             throw new System.NotSupportedException($"{creaturetype} 이라는 타입은 존재하지 않습니다");
         }
 
-        public virtual int Attack()//hit = true -> Player 공격, hit = false -> Monster공격
+        public virtual int Attack(bool critical) //hit = true -> Player 공격, hit = false -> Monster공격
         {
             return _Atk;
+        }
+
+        public virtual bool Critical(int randomValue)    //치명타 결과메서드 실행 시 true반환되면 치명타가 터진거다.
+        {
+            return false;
+        }
+
+        public virtual bool Avoid(int randomValue)         //회피 결과 메서드 실행 시 true로 반환되면 회피한거다.
+        {
+            int avoidnum = (int)(_Avoid * 100);
+            return randomValue < avoidnum;
         }
 
         public virtual int Speed()
         {
             return _Speed;
+        }
+
+        public void ApplyDamage(int damage)
+        {
+            _CurHp -= damage;
         }
     }
 }
