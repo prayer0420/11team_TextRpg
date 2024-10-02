@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace SprtaDungeon
 {
-    public class ShopScene
+    public class ShopScene : Scene
     {
         private List<Item> shopItems;
         private Dictionary<int, bool> shopItemSold; // ItemId, IsSold
@@ -225,6 +225,11 @@ namespace SprtaDungeon
 
             Console.WriteLine("엔터를 누르면 상점으로 돌아갑니다.");
             Console.ReadLine();
+        }
+
+        public int Start()
+        {
+            throw new NotImplementedException();
         }
     }
 }
