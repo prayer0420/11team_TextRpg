@@ -39,7 +39,7 @@ namespace SprtaDungeon
             return _Speed;
         }
 
-        public void ExtraAtkDef()     //매개변수값 받아 추가 공격력, 방어력 더해주기
+        public void ExtraAtkDef(int value)     //매개변수값 받아 추가 공격력, 방어력 더해주기
         {
 
         }

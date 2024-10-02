@@ -20,11 +20,11 @@ namespace SprtaDungeon
         public int _Mp { get; protected set; }
         public int _Exp { get; protected set; }
         public string _Job { get; protected set; }
-        public int _Gold { get; private set; }
+        public int _Gold { get; set; }
 
 
-        public int _ExtraAtk { get; protected set; }
-        public int _ExtraDef { get; protected set; }
+        public int _ExtraAtk { get; set; }
+        public int _ExtraDef { get; set; }
 
         public enum CreatureType    
         {
