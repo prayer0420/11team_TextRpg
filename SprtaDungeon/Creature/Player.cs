@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading;
@@ -41,9 +42,33 @@ namespace SprtaDungeon
             return _Speed;
         }
 
-        public void ExtraAtkDef(int value)     //매개변수값 받아 추가 공격력, 방어력 더해주기
+        public void ExtraAtkDef(bool choice, bool plus, int value)     //choice = true = 추가 공격력, choice = false 방어력 더해주기
         {
-
+            if (plus)
+            {
+                if (choice)
+                {
+                    _ExtraAtk += value;
+                    _Atk += _ExtraAtk;
+                }
+                else {
+                    _ExtraDef += value;
+                    _Def += _ExtraDef;
+                }
+            }
+            else
+            {
+                if (choice)
+                {
+                    _ExtraAtk -= value;
+                    _Atk -= _ExtraAtk;
+                }
+                else
+                {
+                    _ExtraDef -= value;
+                    _Def -= _ExtraDef;
+                }
+            }
         }
 
         public bool Critical()    //치명타 결과메서드 실행 시 true반환되면 치명타가 터진거다.

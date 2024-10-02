@@ -43,11 +43,11 @@ namespace SprtaDungeon
                 if (item.Type == 0)
                 {
                     /*ExtraAtk*/
-                    player.ExtraAtkDef(item.Value);
+                    player.ExtraAtkDef(true, false,  item.Value);
                 }
                 else
                     /*ExtraDef*/
-                    player.ExtraAtkDef(item.Value);
+                    player.ExtraAtkDef(false, false,  item.Value);
 
             }
             else
@@ -55,11 +55,11 @@ namespace SprtaDungeon
                 equipList.Add(item);
                 if (item.Type == 0)
                     /*ExtraAtk*/
-                    player.ExtraAtkDef(item.Value);
+                    player.ExtraAtkDef(true, true,  item.Value);
 
                 else
                     /*ExtraDef*/
-                    player.ExtraAtkDef(item.Value);
+                    player.ExtraAtkDef(false, true,  item.Value);
             }
         }
 

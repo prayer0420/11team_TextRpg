@@ -23,8 +23,8 @@ namespace SprtaDungeon
         public int _Gold { get; set; }
 
 
-        public int _ExtraAtk { get; set; }
-        public int _ExtraDef { get; set; }
+        public int _ExtraAtk { get; protected set; }
+        public int _ExtraDef { get; protected set; }
 
         public enum CreatureType    
         {
