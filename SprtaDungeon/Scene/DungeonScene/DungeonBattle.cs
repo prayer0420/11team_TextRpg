@@ -8,14 +8,16 @@ namespace SprtaDungeon
 {
     internal class DungeonBattle
     {
-        private Creature[] creatures;
-        private Queue<Action> actionQueue;
-        private Action playerAction;
-        private Action monsterAction;
+        private Creature[]          creatures;
+        private Queue<Action>       actionQueue;
+        private Action              playerAction;
+        private Action              monsterAction;
 
-        public DungeonBattle()
+        public DungeonBattle(Creature[] monsters)
         {
+            Creature[] player = new Creature[1] { GameManager.Instance.Player };
 
+            creatures = player.Concat(monsters).ToArray();
         }
 
         public int StartBattle()
@@ -133,6 +135,31 @@ namespace SprtaDungeon
 
             winner = -1;
             return false;
+        }
+
+        private void SetTurnOrder()
+        {
+            List<Creature> tempCreatures = creatures.ToList();
+
+
+            for(int i = 0; i < creatures.Length - 1; i++) 
+            {
+                int temp = i;
+                int tempSpeed = tempCreatures[temp].Speed();
+                for(int j = 0; j < creatures.Length; j++)
+                {
+                    if (tempSpeed < tempCreatures[j].Speed())
+                    {
+                        tempSpeed = tempCreatures[j].Speed();
+                        temp = j;
+                    }
+                }
+
+                Action action = new Action()
+                {
+                    behavior = Action.Behavior.BASIC_ATTACK
+                };
+            }
         }
 
         private Action GetPlayerCommand()

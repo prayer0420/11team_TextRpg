@@ -8,9 +8,18 @@ namespace SprtaDungeon
 {
     public class StatusScene : Scene
     {
+        private Display display;
+        private Creature player;
+
         int Scene.Start()
         {
-            throw new NotImplementedException();
+            player = GameManager.Instance.Player;
+            display = new CreatureDisplay(player, false, false);
+
+            display.Display();
+            display.Select();
+
+            return 0;
         }
     }
 }

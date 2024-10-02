@@ -74,15 +74,15 @@
     <Compile Include="Scene\CreatePlayerScene\CreatePlayerScene.cs" />
     <Compile Include="Scene\DisplayResources\CreatePlayerDisplay\CreatePlayerDisplayName.cs" />
     <Compile Include="Scene\DisplayResources\CreatePlayerDisplay\CreatePlayerDisplay.cs" />
-    <Compile Include="Scene\DisplayResources\CreatureDisplay\CreatureDisplayUI.cs" />
+    <Compile Include="Scene\DisplayResources\CreatureDisplay\CreatureDisplay.cs" />
     <Compile Include="Scene\DisplayResources\Display.cs" />
     <Compile Include="Scene\DisplayResources\DungeonDisplay\DungeonDisplayApplyDamage.cs" />
     <Compile Include="Scene\DisplayResources\DungeonDisplay\DungeonDisplayMap.cs" />
     <Compile Include="Scene\DisplayResources\MainDisplay\MainDisplay.cs" />
     <Compile Include="Scene\DisplayResources\Point.cs" />
+    <Compile Include="Scene\DisplayResources\QuestDisplay\QuestDisplay.cs" />
     <Compile Include="Scene\DungeonScene\Action.cs" />
     <Compile Include="Scene\DungeonScene\DungeonBattle.cs" />
-    <Compile Include="Scene\DungeonScene\DungeonMain.cs" />
     <Compile Include="Scene\DungeonScene\DungeonMap.cs" />
     <Compile Include="Scene\DungeonScene\DungeonRoom.cs" />
     <Compile Include="Scene\DungeonScene\DungeonScene.cs" />
@@ -101,9 +101,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scene\DisplayResources\InventoryDisplay\" />
-    <Folder Include="Scene\DisplayResources\QuestDisplay\" />
     <Folder Include="Scene\DisplayResources\ShopDisplay\" />
-    <Folder Include="Skill\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">

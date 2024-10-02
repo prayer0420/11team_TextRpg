@@ -21,25 +21,9 @@ namespace SprtaDungeon
                 return Type == 0 ? "공격력" : "방어력";
             }
         }
-
-        public string ItemInfoText()
+              public string ItemInfoText()
         {
             return $"{Name}  |  {DisplayTypeText} +{Value}  |  {Desc}";
         }
-
-        //public static Item[] itemDb;
-
-        //static void ItemDataBase()
-        //{
-        //    itemDb = new Item[]
-        //    {
-        //        new Item("수련자의 갑옷", 1, 5,"수련에 도움을 주는 갑옷입니다. ",1000),
-        //        new Item("수련자의 갑옷", 1, 5,"수련에 도움을 주는 갑옷입니다. ",1000),
-        //        new Item("수련자의 갑옷", 1, 5,"수련에 도움을 주는 갑옷입니다. ",1000),
-        //        new Item("수련자의 갑옷", 1, 5,"수련에 도움을 주는 갑옷입니다. ",1000),
-
-        //    };
-        //}
-
     }
 }
