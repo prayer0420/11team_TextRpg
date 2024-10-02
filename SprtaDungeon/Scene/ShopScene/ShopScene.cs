@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace SprtaDungeon
 {
-    public class ShopScene : Scene
+    public class ShopScene
     {
         private List<Item> shopItems;
         private Dictionary<int, bool> shopItemSold; // ItemId, IsSold
@@ -62,6 +62,7 @@ namespace SprtaDungeon
             shopItems.Clear();
             shopItemSold.Clear();
 
+            // 무기 추가
             for (int i = 0; i < 3; i++)
             {
                 Item weapon = new Item(ItemType.Weapon);
@@ -72,6 +73,7 @@ namespace SprtaDungeon
                 }
             }
 
+            // 방어구 추가
             for (int i = 0; i < 3; i++)
             {
                 Item armor = new Item(ItemType.Armor);
@@ -81,6 +83,22 @@ namespace SprtaDungeon
                     shopItemSold.Add(armor.ItemId, false);
                 }
             }
+
+            // 체력 회복 물약 2개 추가
+            for (int i = 0; i < 2; i++)
+            {
+                Potion healthPotion = new Potion(PotionType.Health);
+                shopItems.Add(healthPotion);
+                shopItemSold.Add(healthPotion.ItemId, false);
+            }
+
+            // 마나 회복 물약 2개 추가
+            for (int i = 0; i < 2; i++)
+            {
+                Potion manaPotion = new Potion(PotionType.Mana);
+                shopItems.Add(manaPotion);
+                shopItemSold.Add(manaPotion.ItemId, false);
+            }
         }
 
         private void ShowShopItems()
@@ -89,14 +107,14 @@ namespace SprtaDungeon
             {
                 Item item = shopItems[i];
                 bool isSold = shopItemSold[item.ItemId];
-                Console.Write($"{i + 1}. {item.ItemInfoText()} | {item.Price}G ");
+                Console.Write($"{i + 1}. {item.ItemInfoText()} ");
                 if (isSold)
                 {
                     Console.WriteLine("| 구매 완료");
                 }
                 else
                 {
-                    Console.WriteLine();
+                    Console.WriteLine($"| 가격: {item.Price}G");
                 }
             }
         }
@@ -207,11 +225,6 @@ namespace SprtaDungeon
 
             Console.WriteLine("엔터를 누르면 상점으로 돌아갑니다.");
             Console.ReadLine();
-        }
-
-        public int Start()
-        {
-            throw new NotImplementedException();
         }
     }
 }
