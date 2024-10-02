@@ -21,7 +21,7 @@ namespace SprtaDungeon
         public Player(string name)
         {
            _Name = name;
-            inventory = new Inventory();
+            inventory = Inventory.GetInstance();
         }
 
         public override int Attack(bool critical) //공격력 출력, 공격력 출력할때 치명타 계산이 들어간 데미지가 나간다.
