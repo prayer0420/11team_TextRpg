@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading;
@@ -20,7 +21,7 @@ namespace SprtaDungeon
         public Player(string name)
         {
            _Name = name;
-            inventory = new Inventory();
+            inventory = Inventory.GetInstance();
         }
 
         public override int Attack(bool critical) //공격력 출력, 공격력 출력할때 치명타 계산이 들어간 데미지가 나간다.
@@ -46,9 +47,33 @@ namespace SprtaDungeon
             return _Speed;
         }
 
-        public void ExtraAtkDef(int value)     //매개변수값 받아 추가 공격력, 방어력 더해주기
+        public void ExtraAtkDef(bool choice, bool plus, int value)     //choice = true = 추가 공격력, choice = false 방어력 더해주기
         {
-
+            if (plus)
+            {
+                if (choice)
+                {
+                    _ExtraAtk += value;
+                    _Atk += _ExtraAtk;
+                }
+                else {
+                    _ExtraDef += value;
+                    _Def += _ExtraDef;
+                }
+            }
+            else
+            {
+                if (choice)
+                {
+                    _ExtraAtk -= value;
+                    _Atk -= _ExtraAtk;
+                }
+                else
+                {
+                    _ExtraDef -= value;
+                    _Def -= _ExtraDef;
+                }
+            }
         }
 
         public string ExpGet(int exp)                    //경험치를 던전이나 퀘스트에서 받아야한다.!!!

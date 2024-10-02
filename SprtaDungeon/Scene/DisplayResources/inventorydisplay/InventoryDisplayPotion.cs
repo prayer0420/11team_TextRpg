@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace SprtaDungeon
 {
@@ -12,16 +9,15 @@ namespace SprtaDungeon
         public Point DisplayPoint { get; set; }
         public string Input { get; set; }
 
-        private bool                isUsing;
-        private bool                isShop;
-        private List<Potion>        potions;
+        private bool isUsing;
+        private bool isShop;
+        private List<Potion> potions;
 
         public InventoryDisplayPotion(bool isUsing, bool isShop, List<Potion> potions)
         {
             DisplayPoint = new Point(0, 0);
             this.isUsing = isUsing;
             this.isShop = isShop;
-
             this.potions = potions;
         }
 
@@ -32,7 +28,8 @@ namespace SprtaDungeon
                 if (isUsing || isShop) Console.Write((i + 1) + ". ");
 
                 Potion potion = potions[i];
-                Console.WriteLine(potion.PotionName + " : " + potion.PotionValue + " 회복");
+                string recoveryType = potion.PotionType == PotionType.Health ? "체력" : "마나";
+                Console.WriteLine($"{potion.Name} : {potion.RecoveryAmount} {recoveryType} 회복");
                 Console.WriteLine("개수 : " + potion.PotionCount);
 
                 if (isShop) Console.WriteLine("가격 : " + potion.Price);

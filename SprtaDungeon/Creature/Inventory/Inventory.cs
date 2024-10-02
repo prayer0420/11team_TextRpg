@@ -1,82 +1,86 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SprtaDungeon
 {
     public class Inventory
     {
-        public List<Item> inventory = new List<Item>();
-        public List<Item> equipList = new List<Item>();
-
-        public List<Potion> potions = new List<Potion>();
-
-        Player player = GameManager.Instance.Player as Player;
-
-        public int InventoryCount
+        private static Inventory _instance;
+        public static Inventory GetInstance()
         {
-            get
+            if (_instance == null)
             {
-                return inventory.Count;
+                _instance = new Inventory();
+            }
+            return _instance;
+        }
+
+        public List<Item> Items { get; private set; }
+        public List<Item> EquippedItems { get; private set; }
+        public List<Potion> potions { get; set; }
+
+        public Inventory()
+        {
+            Items = new List<Item>();
+            EquippedItems = new List<Item>();
+        }
+
+        public void AddItem(Item item)
+        {
+            Items.Add(item);
+        }
+
+        public void RemoveItem(Item item)
+        {
+            Items.Remove(item);
+        }
+
+        public void DisplayInventory(bool showIndex = true)
+        {
+            for (int i = 0; i < Items.Count; i++)
+            {
+                Item item = Items[i];
+                string displayIndex = showIndex ? $"{i + 1}. " : "";
+                string equippedText = IsEquipped(item) ? "[E] " : "";
+                Console.WriteLine($"{displayIndex}{equippedText}{item.ItemInfoText()}");
             }
         }
 
-        public void DisplayInventory(bool showIdx)
-        {
-            for (int i = 0; i < inventory.Count; i++)
-            {
-                Item targetItem = inventory[i];
-
-                string displayIdx = showIdx ? $"{i + 1} " : "";
-                string displayEquipped = IsEquipped(targetItem) ? "[E]" : "";
-                Console.WriteLine($"- {displayIdx}{displayEquipped} {targetItem.ItemInfoText()}");
-            }
-        }
-
-        public void EquipItem(Item item)
+        public void EquipItem(Item item, Player player) // player 매개변수 추가
         {
             if (IsEquipped(item))
             {
-                equipList.Remove(item);
-                if (item.Type == 0)
+                // 장비 해제
+                EquippedItems.Remove(item);
+                if (item.Type == ItemType.Weapon)
                 {
-                    /*ExtraAtk*/
-                    player.ExtraAtkDef(item.Value);
+                    player.ExtraAtkDef(true, false,item.Value); // 공격력 감소
                 }
-                else
-                    /*ExtraDef*/
-                    player.ExtraAtkDef(item.Value);
-
+                else if (item.Type == ItemType.Armor)
+                {
+                    player.ExtraAtkDef(false,false,item.Value); // 방어력 감소
+                }
+                Console.WriteLine($"{item.Name}을(를) 장비 해제하였습니다.");
             }
             else
             {
-                equipList.Add(item);
-                if (item.Type == 0)
-                    /*ExtraAtk*/
-                    player.ExtraAtkDef(item.Value);
-
-                else
-                    /*ExtraDef*/
-                    player.ExtraAtkDef(item.Value);
+                // 장비 장착
+                EquippedItems.Add(item);
+                if (item.Type == ItemType.Weapon)
+                {
+                    player.ExtraAtkDef(true, true,item.Value); // 공격력 증가
+                }
+                else if (item.Type == ItemType.Armor)
+                {
+                    player.ExtraAtkDef(false, true,item.Value); // 방어력 증가
+                }
+                Console.WriteLine($"{item.Name}을(를) 장비하였습니다.");
             }
         }
 
         public bool IsEquipped(Item item)
         {
-            return equipList.Contains(item);
-        }
-
-        public void BuyItem(Item item)
-        {
-            GameManager.Instance.Player._Gold -= item.Price;
-            inventory.Add(item);
-        }
-
-        public bool HasItem(Item item)
-        {
-            return inventory.Contains(item);
+            return EquippedItems.Contains(item);
         }
     }
 }
