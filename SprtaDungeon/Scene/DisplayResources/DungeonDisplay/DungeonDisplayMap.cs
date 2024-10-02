@@ -8,11 +8,10 @@ namespace SprtaDungeon
 {
     public class DungeonDisplayMap : Display
     {
-        public Point        DisplayPoint { get; set; }
+        public Point            DisplayPoint { get; set; }
 
-        private DungeonMap  DungeonMap { get; set; }
-        public int          CurrentFloor { get; set; }
-        public string       Input { get; set; }
+        public string           Input { get; set; }
+        private DungeonMap      DungeonMap { get; set; }
 
         public DungeonDisplayMap(DungeonMap dungeonMap)
         {

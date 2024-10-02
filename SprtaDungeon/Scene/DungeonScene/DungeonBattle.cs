@@ -13,7 +13,6 @@ namespace SprtaDungeon
         private Action[]            actions;
         private Display             display;
         private Display             battleInfoDisplay;
-
         private Random              random;
 
         public DungeonBattle(Creature[] monsters, int seed)

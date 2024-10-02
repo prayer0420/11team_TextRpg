@@ -25,11 +25,11 @@ namespace SprtaDungeon
                           "\n" +
                           "1. 상태 보기\n" +
                           "2. 인벤토리\n" +
-                          "4. 상점\n" +
-                          "5. 던전 입장\n" +
-                          "6. 퀘스트\n" +
-                          "7. 저장하기\n" +
-                          "8. 게임 종료\n" +
+                          "3. 상점\n" +
+                          "4. 던전 입장\n" +
+                          "5. 퀘스트\n" +
+                          "6. 저장하기\n" +
+                          "7. 게임 종료\n" +
                           "\n" +
                           "원하시는 행동을 입력해주세요.\n");
             // 입력 라인 = 12
@@ -42,7 +42,7 @@ namespace SprtaDungeon
                 Console.Write(">> ");
                 Input = Console.ReadLine();
 
-                if (int.TryParse(Input, out int result) && result > -1 && result < 8) return result;
+                if (int.TryParse(Input, out int result) && result > -1 && result < 7) return result;
 
                 Console.Write("다시 입력해 주십시오...");
                 Thread.Sleep(500);

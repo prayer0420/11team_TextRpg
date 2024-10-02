@@ -9,27 +9,26 @@ namespace SprtaDungeon
 {
     public class DungeonMap
     {
-        private const int           FLOOR = 5;
-        private const int           MIN_ROOM_AMOUNT = 2;
-        private const int           MAX_ROOM_AMOUNT = 5;
+        public const int                            FLOOR = 5;
+        private const int                           MIN_ROOM_AMOUNT = 2;
+        private const int                           MAX_ROOM_AMOUNT = 5;
 
-        private int                 seed;
-        private List<(int, int)>[]  edges;
+        private int                                 seed;
 
-        private DungeonRoom[][]     rooms;
-        private Random              random;
+        private DungeonRoom[][]                     rooms;
+        private List<(int domain, int dest)>[]      edges;
 
-        public DungeonRoom[][]      DungeonRooms { get; private set; }
-        public List<(int, int)>[]   DungeonEdges { get; private set; }
+        private Random                              random;
+        private (int floor, int roomNum)?           currentRoom;
+
+        public DungeonRoom[][]                      DungeonRooms { get { return rooms; } }
+        public List<(int domain, int dest)>[]       DungeonEdges { get { return edges; } }
 
 
         public DungeonMap(int seed)
         {
             this.seed = seed;
             random = new Random(this.seed);
-
-            DungeonRooms = rooms;
-            DungeonEdges = edges;
 
             CreateRoom();
             CreateEdges();
@@ -40,14 +39,13 @@ namespace SprtaDungeon
         {
             rooms = new DungeonRoom[FLOOR][];
 
-
             for(int i = 0; i < FLOOR; i++)
             {
                 rooms[i] = new DungeonRoom[random.Next(MIN_ROOM_AMOUNT, MAX_ROOM_AMOUNT + 1)];
 
                 for(int j = 0; j < rooms[i].Length; j++)
                 {
-                    rooms[i][j] = new DungeonRoom();
+                    rooms[i][j] = new DungeonRoom(seed);
                 }
             }
         }
@@ -164,16 +162,22 @@ namespace SprtaDungeon
             }
         }
 
-        public List<int> GetNextRooms(int floor, int roomIndex)
+        public List<int> GetNextRooms()
         {
             List<int> nextRooms = new List<int>();
 
-            for(int i = 0; i < edges[floor].Count; i++)
+            for(int i = 0; i < edges[currentRoom.Value.floor].Count; i++)
             {
-                if (edges[floor][i].Item1 == roomIndex) nextRooms.Add(i);
+                if (edges[currentRoom.Value.floor][i].domain == currentRoom.Value.roomNum) nextRooms.Add(i);
             }
 
             return nextRooms;
+        }
+
+        public RoomResult EnterRoom(int floor, int roomNum)
+        {
+            currentRoom = (floor, roomNum);
+            return (RoomResult)rooms[currentRoom.Value.floor][currentRoom.Value.roomNum].EnterRoom();
         }
 
         public void Debug()
@@ -192,9 +196,16 @@ namespace SprtaDungeon
 
                 for (int j = 0; j < edges[i].Count; j++)
                 {
-                    Console.WriteLine("(" + edges[i][j].Item1 + ", " + edges[i][j].Item2 + ")");
+                    Console.WriteLine("(" + edges[i][j].domain + ", " + edges[i][j].dest + ")");
                 }
             }
+        }
+
+        public enum RoomResult
+        {
+            ERROR = -1,
+            WIN,
+            LOSE
         }
     }
 }
