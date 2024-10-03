@@ -62,7 +62,6 @@
     <Compile Include="Creature\Inventory\Inventory.cs" />
     <Compile Include="Creature\Skill.cs" />
     <Compile Include="GameManager\Game.cs" />
-    <Compile Include="GameData\GameData.cs" />
     <Compile Include="GameManager\GameManager.cs" />
     <Compile Include="Item\Item.cs" />
     <Compile Include="Item\Potion.cs" />
@@ -109,9 +108,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Scene\DisplayResources\ShopDisplay\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
       <Visible>False</Visible>
