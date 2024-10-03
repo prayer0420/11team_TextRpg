@@ -33,9 +33,9 @@ namespace SprtaDungeon
                 Console.WriteLine("개수 : " + potion.PotionCount);
 
                 if (isShop) Console.WriteLine("가격 : " + potion.Price);
-
-                Console.WriteLine();
             }
+
+            if (isUsing) Console.WriteLine("0. 돌아가기\n\n사용할 포션 번호를 입력해주세요.");
         }
 
         int Display.Select()

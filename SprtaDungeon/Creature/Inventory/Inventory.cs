@@ -23,6 +23,7 @@ namespace SprtaDungeon
         {
             Items = new List<Item>();
             EquippedItems = new List<Item>();
+            potions = new List<Potion>();
         }
 
         public void AddItem(Item item)

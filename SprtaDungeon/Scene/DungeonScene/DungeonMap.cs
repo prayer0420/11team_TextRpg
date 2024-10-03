@@ -33,6 +33,7 @@ namespace SprtaDungeon
         {
             this.seed = seed;
             random = new Random(this.seed);
+            clearedRooms = new List<(int, int)>();
 
             CreateRoom();
             CreateEdges();

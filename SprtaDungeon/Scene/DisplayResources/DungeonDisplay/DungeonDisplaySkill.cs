@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using static SprtaDungeon.Action;
 
 namespace SprtaDungeon
 {
@@ -28,10 +29,11 @@ namespace SprtaDungeon
             skillCount = (creatures[0] as Player).skills.Count;
             skillDisplay = new SkillDisplay(cursorY, creatures[0], true);
         }
-        public DungeonDisplaySkill(int monsterAmount)
+        public DungeonDisplaySkill(Creature[] creatures)
         {
             DisplayPoint = new Point(0, 0);
-            this.monsterAmount = monsterAmount;
+            this.monsterAmount = creatures.Length - 1;
+            this.creatures = creatures;
 
             targetSelect = true;
         }
@@ -62,15 +64,31 @@ namespace SprtaDungeon
 
                 if (int.TryParse(Input, out int result) && result > -1 && result < resultMax)
                 {
-                    if (creatures[result]._CurHp > 0) return result;
-                    Console.Write("이미 쓰러진 적입니다. ");
+                    if (targetSelect)
+                    {
+                        if (creatures[result]._CurHp > 0)
+                        {
+                            return result;
+                        }
+                        Console.Write("이미 쓰러진 적입니다. ");
+                    }
+                    else
+                    {
+                        if (result == 0) return 0;
+
+                        if ((GameManager.Instance.Player as Player).skills[result - 1]._SkillMp <= (GameManager.Instance.Player as Player)._CurMp)
+                        {
+                            return result;
+                        }
+                        Console.Write("마나가 부족합니다.");
+                    }
                 }
 
                 Console.Write("다시 입력해 주십시오...");
                 Thread.Sleep(500);
 
                 DisplayPoint.Set(0, Console.CursorTop - 1);
-                Console.Write("                                                                                                                \n                       ");
+                Console.Write("                                                                                                                \n                                                                     ");
                 DisplayPoint.Set(0, Console.CursorTop - 1);
             }
         }

@@ -44,7 +44,7 @@ namespace SprtaDungeon
                 Thread.Sleep(500);
 
                 DisplayPoint.Set(0, Console.CursorTop - 1);
-                Console.Write("                                                                                                                \n                       ");
+                Console.Write("                                                                                                                \n                                                                     ");
                 DisplayPoint.Set(0, Console.CursorTop - 1);
             }
         }

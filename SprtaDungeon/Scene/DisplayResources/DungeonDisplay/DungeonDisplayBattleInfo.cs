@@ -16,7 +16,7 @@ namespace SprtaDungeon
 
         public DungeonDisplayBattleInfo(Creature[] creatures)
         {
-            monsterAmount = creatures.Length - 1;
+            monsterAmount = creatures.Length;
 
             creatureDisplays = new CreatureDisplay[creatures.Length];
             for(int i = 0; i < creatureDisplays.Length; i ++)
@@ -30,7 +30,7 @@ namespace SprtaDungeon
             Console.Clear();
             for(int i = 1; i < monsterAmount; i ++)
             {
-                creatureDisplays[i].CreatureStatus();
+                creatureDisplays[i].CreatureStatus(i);
                 Console.WriteLine();
             }
             Console.WriteLine("--------------------------------------------------------\n");

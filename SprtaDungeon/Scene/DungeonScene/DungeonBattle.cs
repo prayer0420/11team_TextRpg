@@ -22,6 +22,8 @@ namespace SprtaDungeon
             creatures = player.Concat(monsters).ToArray();
             battleInfoDisplay = new DungeonDisplayBattleInfo(creatures);
             random = new Random(seed);
+            actions = new Action[creatures.Length];
+            actionQueue = new Queue<Action>();
         }
 
         public int StartBattle()
@@ -142,13 +144,12 @@ namespace SprtaDungeon
                 {
                     win = 1;
 
-
                     return true;
                 }
 
                 for (int i = 1; i < creatures.Length; i++)
                 {
-                    if (creatures[i]._CurHp >= 0)
+                    if (creatures[i]._CurHp > 0)
                     {
                         win = -1;
                         return false;
@@ -164,7 +165,7 @@ namespace SprtaDungeon
         {
             List<Action> actionList = actions.ToList();
 
-            for(int i = 0; i < actions.Length - 1; i++) 
+            for (int i = 0; i < actions.Length; i++) 
             {
                 int temp = 0;
                 int tempSpeed = actionList[temp].speed;
@@ -177,7 +178,7 @@ namespace SprtaDungeon
                         temp = j;
                     }
                 }
-
+                
                 actionQueue.Enqueue(actionList[temp]);
                 actionList.RemoveAt(temp);
             }
@@ -228,7 +229,7 @@ namespace SprtaDungeon
 
                         battleInfoDisplay.Display();
 
-                        display = new DungeonDisplaySkill(creatures.Length - 1);
+                        display = new DungeonDisplaySkill(creatures);
                         display.Display();
                         target = display.Select();
 
@@ -240,7 +241,7 @@ namespace SprtaDungeon
                             turn = Action.Creature.PLAYER,
                             creatureNum = 0,
                             speed = creatures[0].Speed(),
-                            skillNum = skillNum,
+                            skillNum = skillNum - 1,
                             targetNum = target
                         };
 
@@ -260,7 +261,7 @@ namespace SprtaDungeon
                             turn = Action.Creature.PLAYER,
                             creatureNum = 0,
                             speed = creatures[0].Speed(),
-                            itemNum = potion
+                            itemNum = potion - 1
                         };
 
                         break;
