@@ -14,9 +14,9 @@ namespace SprtaDungeon
         private Monster monster;
         private int damage;
 
-        public DungeonDisplayApplyDamage(int x, int y, Monster monster, int damage)
+        public DungeonDisplayApplyDamage(Monster monster, int damage)
         {
-            DisplayPoint = new Point(x, y);
+            DisplayPoint = new Point(0, 0);
 
             this.monster = monster;
             this.damage = damage;
@@ -24,7 +24,7 @@ namespace SprtaDungeon
 
         void Display.Display()
         {
-            throw new NotImplementedException();
+            Console.WriteLine(monster._Name + "에게 " +  damage + "데미지를 주었다!");
         }
 
         int Display.Select()

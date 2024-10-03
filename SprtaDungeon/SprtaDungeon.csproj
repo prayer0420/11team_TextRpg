@@ -75,6 +75,9 @@
     <Compile Include="Scene\DisplayResources\CreatePlayerDisplay\CreatePlayerDisplayName.cs" />
     <Compile Include="Scene\DisplayResources\CreatePlayerDisplay\CreatePlayerDisplay.cs" />
     <Compile Include="Scene\DisplayResources\CreatureDisplay\CreatureDisplay.cs" />
+    <Compile Include="Scene\DisplayResources\DungeonDisplay\DungeonDisplayClear.cs" />
+    <Compile Include="Scene\DisplayResources\DungeonDisplay\DungeonDisplayLevelUp.cs" />
+    <Compile Include="Scene\DisplayResources\DungeonDisplay\DungeonDisplayLose.cs" />
     <Compile Include="Scene\DisplayResources\InventoryDisplay\InventoryDisplayItem.cs" />
     <Compile Include="Scene\DisplayResources\InventoryDisplay\InventoryDisplayPotion.cs" />
     <Compile Include="Scene\DisplayResources\CreatureDisplay\SkillDisplay.cs" />

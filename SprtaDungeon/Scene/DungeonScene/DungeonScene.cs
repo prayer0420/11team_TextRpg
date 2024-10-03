@@ -8,10 +8,11 @@ namespace SprtaDungeon
 {
     public class DungeonScene : Scene
     {
+        private const int           GAIN_GOLD = 3000;
         private DungeonMap          map;
-        private int                 currentFloor;
-        Display                     display;
-        Random                      random;
+        private Display             mapDisplay;
+        private Display             resultDisplay;
+        private Random              random;
 
         public DungeonScene()
         {
@@ -20,29 +21,15 @@ namespace SprtaDungeon
 
         int Scene.Start()
         {
-            var room = new DungeonRoom(random.Next());
-            room.EnterRoom();
-
-
-            //map = new DungeonMap(random.Next());
-            //display = new DungeonDisplayMap(map);
-            //display.Display();
-            //Console.ReadLine();
-
-            return 0;
-            //map = new DungeonMap(random.Next());
-            //return DungeonStart();
-        }
-
-        private void DungeonMain()
-        {
-
+            map = new DungeonMap(random.Next());
+            return DungeonStart();
         }
 
         private int DungeonStart()
         {
             int result;
-            display = new DungeonDisplayMap(map);
+            Player player = GameManager.Instance.Player as Player;
+            mapDisplay = new DungeonDisplayMap(map);
 
             do
             {
@@ -51,8 +38,14 @@ namespace SprtaDungeon
 
             if (result == 0)
             {
-                // 던전 클리어 보상
+                player._Gold += GAIN_GOLD;
+                resultDisplay = new DungeonDisplayClear(GAIN_GOLD);
+                resultDisplay.Display();
+                resultDisplay.Select();
             }
+
+            player.Heal();
+            player.ChargeMp();
 
             return 0;
         }
@@ -61,23 +54,28 @@ namespace SprtaDungeon
         {
             int roomNum;
 
-            display.Display();
-            roomNum = display.Select();
+            mapDisplay.Display();
+            roomNum = mapDisplay.Select();
 
+            int currentFloor = map.CurrentRoom == null ? 0 : map.CurrentRoom.Value.floor + 1;
             DungeonMap.RoomResult result = map.EnterRoom(currentFloor, roomNum);
 
-            switch(result)
+            if (currentFloor >= DungeonMap.FLOOR - 1) return 0;
+
+            if (result == DungeonMap.RoomResult.WIN) 
             {
-                case DungeonMap.RoomResult.WIN:
-
-                    currentFloor++;
-                    return 1;
-
-                case DungeonMap.RoomResult.LOSE:
-                    return -1;
+                resultDisplay = new DungeonDisplayLevelUp();
+                resultDisplay.Display();
+                resultDisplay.Select();
+                return 1;
             }
-
-            if (currentFloor > DungeonMap.FLOOR) return 0;
+            else if(result == DungeonMap.RoomResult.LOSE)
+            {
+                resultDisplay = new DungeonDisplayLose();
+                resultDisplay.Display();
+                resultDisplay.Select();
+                return -1; 
+            }
 
             throw new Exception("Dungeon Logic Error");
         }
