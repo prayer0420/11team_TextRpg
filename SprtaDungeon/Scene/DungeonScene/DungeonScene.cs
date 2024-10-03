@@ -8,7 +8,7 @@ namespace SprtaDungeon
 {
     public class DungeonScene : Scene
     {
-        private const int           GAIN_GOLD = 3000;
+        private const int           GAIN_GOLD = 10000;
         private DungeonMap          map;
         private Display             mapDisplay;
         private Display             resultDisplay;

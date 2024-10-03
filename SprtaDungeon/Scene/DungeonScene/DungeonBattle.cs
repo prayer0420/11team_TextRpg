@@ -116,16 +116,14 @@ namespace SprtaDungeon
 
                     if (finalDamage <= 0) finalDamage = 1;
 
+                    creatures[defender].ApplyDamage(finalDamage);
+
                     // 몬스터 처치 시
-                    if (creatures[defender]._CurHp <= 0 && creatures[defender] != GameManager.Instance.Player)
+                    if (creatures[defender]._CurHp <= 0 && defender != 0)
                     {
                         // **퀘스트 진행 업데이트**
                         QuestManager.GetInstance().UpdateKillCount(creatures[defender]._Name);
                     }
-
-
-                    creatures[defender].ApplyDamage(finalDamage);
-
 
                     if (BattleFinished(out winner)) return true;
                 }

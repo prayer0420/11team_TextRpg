@@ -9,24 +9,24 @@ namespace SprtaDungeon
 {
     public class Creature
     {
-        public int _Lv { get; protected set; }
-        public string _Name { get; protected set; }
-        public int _Atk { get; protected set; }
-        public int _Def { get; protected set; }
-        public float _Critical { get; protected set; }
-        public float _Avoid { get; protected set; }
-        public int _Speed { get; protected set; }
-        public int _MaxHp { get; protected set; }
-        public int _CurHp { get; protected set; }
-        public int _MaxMp { get; protected set; }
-        public int _CurMp { get; protected set; }
-        public int _Exp { get; protected set; }
-        public string _Job { get; protected set; }
+        public int _Lv { get; set; }
+        public string _Name { get; set; }
+        public int _Atk { get; set; }
+        public int _Def { get; set; }
+        public float _Critical { get; set; }
+        public float _Avoid { get; set; }
+        public int _Speed { get; set; }
+        public int _MaxHp { get; set; }
+        public int _CurHp { get; set; }
+        public int _MaxMp { get; set; }
+        public int _CurMp { get; set; }
+        public int _Exp { get; set; }
+        public string _Job { get; set; }
         public int _Gold { get; set; }
 
 
-        public int _ExtraAtk { get; protected set; }
-        public int _ExtraDef { get; protected set; }
+        public int _ExtraAtk { get; set; }
+        public int _ExtraDef { get; set; }
 
         public enum CreatureType    
         {
