@@ -65,7 +65,6 @@
     <Compile Include="Creature\Inventory\Inventory.cs" />
     <Compile Include="Creature\Skill.cs" />
     <Compile Include="GameManager\Game.cs" />
-    <Compile Include="GameData\GameData.cs" />
     <Compile Include="GameManager\GameManager.cs" />
     <Compile Include="Item\Item.cs" />
     <Compile Include="Item\Potion.cs" />
