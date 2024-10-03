@@ -50,6 +50,12 @@ namespace SprtaDungeon
 
                     case SceneType.QUEST_SCENE:
                         scenes[i] = new QuestScene(); break;
+
+                    case SceneType.SAVE_SCENE:
+                        scenes[i] = new SaveScene(); break;
+
+                    case SceneType.GAMEOVER_SCENE:
+                        scenes[i] = new GameoverScene(); break;
                 }
             }
         }
@@ -71,7 +77,9 @@ namespace SprtaDungeon
             INVENTORY_SCENE,
             SHOP_SCENE,
             DUNGEON_SCENE,
-            QUEST_SCENE
+            QUEST_SCENE,
+            SAVE_SCENE,
+            GAMEOVER_SCENE
         }
     }
 }

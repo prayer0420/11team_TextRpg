@@ -13,7 +13,7 @@ namespace SprtaDungeon
         Completed
     }
 
-    internal class Quest
+    public class Quest
     {
 
         public string Name { get; set; } //퀘스트 이름
@@ -66,7 +66,7 @@ namespace SprtaDungeon
                 {
                     // 이번에 업데이트로 인하여 완료가 된것이라면
                     Status = QuestStatus.Completed;
-                    Console.WriteLine($"퀘스트 '{Name}' 완료됨!");
+                    //Console.WriteLine($"퀘스트 '{Name}' 완료됨!");
                 }
             }
         }
@@ -78,7 +78,7 @@ namespace SprtaDungeon
             Console.WriteLine(Description);
             foreach (var objective in Objectives)
             {
-                Console.WriteLine($"- {objective.Key} ({Progress[objective.Key]} / {Objectives[objective.Key]}");
+                Console.WriteLine($"- {objective.Key} ({Progress[objective.Key]} / {Objectives[objective.Key]})");
             }
             Console.WriteLine(Status == QuestStatus.Completed ? "퀘스트 완료됨!" : "진행 중");
         }

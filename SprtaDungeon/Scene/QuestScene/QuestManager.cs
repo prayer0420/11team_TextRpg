@@ -9,7 +9,7 @@ namespace SprtaDungeon
     class QuestManager
     {
         public List<Quest> availableQuests; //진행 가능한 퀘스트 
-        private List<Quest> activeQuests; //진행중인 퀘스트
+        public List<Quest> activeQuests; //진행중인 퀘스트
 
         private static QuestManager instance;
         public static QuestManager GetInstance()
@@ -175,12 +175,12 @@ namespace SprtaDungeon
                             quest.Progress[monsterName] = 0;
 
                         quest.Progress[monsterName]++;
-                        Console.WriteLine($"[퀘스트 진행] '{quest.Name}' 퀘스트의 '{monsterName}' 처치 수: {quest.Progress[monsterName]}/{quest.Objectives[monsterName]}");
+                        //Console.WriteLine($"[퀘스트 진행] '{quest.Name}' 퀘스트의 '{monsterName}' 처치 수: {quest.Progress[monsterName]}/{quest.Objectives[monsterName]}");
 
                         if (quest.IsCompleted())
                         {
                             quest.Status = QuestStatus.Completed;
-                            Console.WriteLine($"[퀘스트 완료] '{quest.Name}' 퀘스트를 완료하였습니다!");
+                            //Console.WriteLine($"[퀘스트 완료] '{quest.Name}' 퀘스트를 완료하였습니다!");
                         }
                     }
                 }

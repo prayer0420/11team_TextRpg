@@ -48,6 +48,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -91,16 +94,19 @@
     <Compile Include="Scene\DisplayResources\MainDisplay\MainDisplay.cs" />
     <Compile Include="Scene\DisplayResources\Point.cs" />
     <Compile Include="Scene\DisplayResources\QuestDisplay\QuestDisplay.cs" />
+    <Compile Include="Scene\DisplayResources\SaveDisplay\SaveDisplay.cs" />
     <Compile Include="Scene\DungeonScene\Action.cs" />
     <Compile Include="Scene\DungeonScene\DungeonBattle.cs" />
     <Compile Include="Scene\DungeonScene\DungeonMap.cs" />
     <Compile Include="Scene\DungeonScene\DungeonRoom.cs" />
     <Compile Include="Scene\DungeonScene\DungeonScene.cs" />
+    <Compile Include="Scene\GameoverScene\GameoverScene.cs" />
     <Compile Include="Scene\InventoryScene\InventoryScene.cs" />
     <Compile Include="Scene\MainScene\MainScene.cs" />
     <Compile Include="Scene\QuestScene\Quest.cs" />
     <Compile Include="Scene\QuestScene\QuestManager.cs" />
     <Compile Include="Scene\QuestScene\QuestScene.cs" />
+    <Compile Include="Scene\SaveScene\SaveScene.cs" />
     <Compile Include="Scene\Scene.cs" />
     <Compile Include="Scene\SceneManager\SceneManager.cs" />
     <Compile Include="Scene\ShopScene\ShopScene.cs" />
@@ -108,10 +114,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Scene\DisplayResources\ShopDisplay\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
       <Visible>False</Visible>
