@@ -24,7 +24,7 @@ namespace SprtaDungeon
 
         public int EnterRoom()
         {
-            battle = new DungeonBattle(Monsters, seed);
+            battle = new DungeonBattle(Monsters, random.Next());
 
             return battle.StartBattle();
         }

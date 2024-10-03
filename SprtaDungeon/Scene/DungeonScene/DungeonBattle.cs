@@ -91,7 +91,7 @@ namespace SprtaDungeon
 
                     case Action.Behavior.QUIT:
 
-                        winner = -1;
+                        winner = 1;
 
                         return true;
                 }

@@ -32,7 +32,7 @@ namespace SprtaDungeon
         public DungeonMap(int seed)
         {
             this.seed = seed;
-            random = new Random(this.seed);
+            random = new Random(seed);
             clearedRooms = new List<(int, int)>();
 
             CreateRoom();
@@ -50,7 +50,7 @@ namespace SprtaDungeon
 
                 for(int j = 0; j < rooms[i].Length; j++)
                 {
-                    rooms[i][j] = new DungeonRoom(seed);
+                    rooms[i][j] = new DungeonRoom(random.Next());
                 }
             }
         }
@@ -182,7 +182,7 @@ namespace SprtaDungeon
 
             for (int i = 0; i < edges[currentRoom.Value.floor].Count; i++)
             {
-                if (edges[currentRoom.Value.floor][i].domain == currentRoom.Value.roomNum) nextRooms.Add(i);
+                if (edges[currentRoom.Value.floor][i].domain == currentRoom.Value.roomNum) nextRooms.Add(edges[currentRoom.Value.floor][i].dest);
             }
 
             return nextRooms;
