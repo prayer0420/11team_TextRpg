@@ -18,7 +18,8 @@ namespace SprtaDungeon
         public int _Speed { get; protected set; }
         public int _MaxHp { get; protected set; }
         public int _CurHp { get; protected set; }
-        public int _Mp { get; protected set; }
+        public int _MaxMp { get; protected set; }
+        public int _CurMp { get; protected set; }
         public int _Exp { get; protected set; }
         public string _Job { get; protected set; }
         public int _Gold { get; set; }
@@ -81,6 +82,7 @@ namespace SprtaDungeon
         public void ApplyDamage(int damage)
         {
             _CurHp -= damage;
+            if (_CurHp < 0) { _CurHp = 0; }
         }
     }
 }

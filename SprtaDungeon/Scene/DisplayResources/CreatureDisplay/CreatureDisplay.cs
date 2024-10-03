@@ -48,18 +48,19 @@ namespace SprtaDungeon
             Console.WriteLine("원하시는 행동을 입력해주세요.");
         }
 
-        public void CreatureStatus()
+        public void CreatureStatus(int count = 1)
         {
             if (isPlayer)
             {
                 Console.WriteLine($"Lv. {creature._Lv:D2}");
                 Console.WriteLine($"Chad ( {creature._Job} )");
                 Console.WriteLine($"HP : {creature._CurHp} / {creature._MaxHp}");
+                Console.WriteLine($"MP : {creature._CurMp} / {creature._MaxMp}");
             }
             else
             {
                 string monsterStat = $"Lv.{creature._Lv} {creature._Name.PadRight(4)} HP {creature._CurHp} / {creature._MaxHp}";
-                Console.WriteLine(isDisplayNumber ? monsterStat : $"{count++} " + monsterStat);
+                Console.WriteLine(isDisplayNumber ? $"{count}. " + monsterStat : monsterStat);
             }
 
             Console.WriteLine((creature._ExtraAtk == 0) ? $"공격력 : {creature._Atk}" : $"공격력 : {creature._Atk + creature._ExtraAtk} (+{creature._ExtraAtk})");

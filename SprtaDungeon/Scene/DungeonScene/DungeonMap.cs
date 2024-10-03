@@ -20,15 +20,20 @@ namespace SprtaDungeon
 
         private Random                              random;
         private (int floor, int roomNum)?           currentRoom;
+        private List<(int floor, int roomNum)>      clearedRooms;
 
         public DungeonRoom[][]                      DungeonRooms { get { return rooms; } }
         public List<(int domain, int dest)>[]       DungeonEdges { get { return edges; } }
+        public (int floor, int roomNum)?            CurrentRoom { get { return currentRoom; } }
+        public List<(int floor, int roomNum)>       ClearedRooms { get { return clearedRooms; } }
+
 
 
         public DungeonMap(int seed)
         {
             this.seed = seed;
             random = new Random(this.seed);
+            clearedRooms = new List<(int, int)>();
 
             CreateRoom();
             CreateEdges();
@@ -186,7 +191,11 @@ namespace SprtaDungeon
         public RoomResult EnterRoom(int floor, int roomNum)
         {
             currentRoom = (floor, roomNum);
-            return (RoomResult)rooms[currentRoom.Value.floor][currentRoom.Value.roomNum].EnterRoom();
+
+            RoomResult roomResult = (RoomResult)rooms[currentRoom.Value.floor][currentRoom.Value.roomNum].EnterRoom();
+            if (roomResult == RoomResult.WIN) clearedRooms.Add(currentRoom.Value);
+
+            return roomResult;
         }
 
         public void Debug()

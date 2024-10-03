@@ -20,8 +20,18 @@ namespace SprtaDungeon
 
         int Scene.Start()
         {
-            map = new DungeonMap(random.Next());
-            return DungeonStart();
+            var room = new DungeonRoom(random.Next());
+            room.EnterRoom();
+
+
+            //map = new DungeonMap(random.Next());
+            //display = new DungeonDisplayMap(map);
+            //display.Display();
+            //Console.ReadLine();
+
+            return 0;
+            //map = new DungeonMap(random.Next());
+            //return DungeonStart();
         }
 
         private void DungeonMain()

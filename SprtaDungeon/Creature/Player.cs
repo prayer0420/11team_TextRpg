@@ -119,11 +119,26 @@ namespace SprtaDungeon
             return $"현재 경험치는 {_Exp} 입니다";
         }
 
+        public void Heal()
+        {
+            _CurHp = _MaxHp;
+        }
         public void Heal(int value)
         {
             _CurHp += value;
-            if(_CurHp > _MaxHp) _CurHp = _MaxHp;
+            if (_CurHp > _MaxHp) _CurHp = _MaxHp;
         }
+
+        public void ChargeMp()
+        {
+            _CurMp = _MaxMp;
+        }
+        public void ChargeMp(int value)
+        {
+            _CurMp += value;
+            if (_CurMp > _MaxMp) _CurMp = _MaxMp;
+        }
+
 
         public void LvUp()  //레벨업 할때 계산되는 함수
         {
@@ -146,6 +161,8 @@ namespace SprtaDungeon
 
         public int SkillAttack(int indexnum, bool critical)        //스킬 공격(치명타 적용됨)
         {
+            _CurMp -= skills[indexnum]._SkillMp;
+
             if (critical)
             {
                 return (int)Math.Round(skills[indexnum]._SkillAtk * _Atk * 1.6f);
@@ -167,8 +184,9 @@ namespace SprtaDungeon
             _Def = 10;
             _Speed = 5;
             _MaxHp = 100;
-            _Mp = 50;
+            _MaxMp = 50;
             _CurHp = _MaxHp;
+            _CurMp = _MaxMp;
 
             SkillListAdd(new Skill("알파 스트라이크", "공격력 * 2 로 하나의 적을 공격합니다.", 10, 2.0f, 1));
             SkillListAdd(new Skill("더블 스트라이크", "공격력 * 1.5 로 2명의 적을 랜덤으로 공격합니다.", 15, 1.5f, 2));
@@ -185,8 +203,9 @@ namespace SprtaDungeon
             _Def = 7;
             _Speed = 10;
             _MaxHp = 80;
-            _Mp = 50;
+            _MaxMp = 50;
             _CurHp = _MaxHp;
+            _CurMp = _MaxMp;
 
             SkillListAdd(new Skill("헤드샷", "공격력 * 2.5 로 하나의 적을 공격합니다.", 10, 2.5f, 1));
             SkillListAdd(new Skill("다중사격", "공격력 * 2.0 로 2명의 적을 랜덤으로 공격합니다.", 15, 2.0f, 2));
@@ -203,8 +222,9 @@ namespace SprtaDungeon
             _Def = 4;
             _Speed = 6;
             _MaxHp = 60;
-            _Mp = 50;
+            _MaxMp = 50;
             _CurHp = _MaxHp;
+            _CurMp = _MaxMp;
 
             SkillListAdd(new Skill("화염 강타", "공격력 * 3.0 로 하나의 적을 공격합니다.", 10, 3.0f, 1));
             SkillListAdd(new Skill("화염 폭발", "공격력 * 2.5 로 3명의 적을 랜덤으로 공격합니다.", 15, 2.5f, 3));

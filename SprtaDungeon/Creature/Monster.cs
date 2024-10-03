@@ -31,6 +31,7 @@ namespace SprtaDungeon
             _Atk = 5;
             _Def = 3;
             _Speed = 4;
+            _CurHp = _MaxHp;
         }
     }
     public class Voidling : Monster
@@ -43,6 +44,7 @@ namespace SprtaDungeon
             _Atk = 9;
             _Def = 5;
             _Speed = 6;
+            _CurHp = _MaxHp;
         }
     }
     public class CannonMinion : Monster
@@ -55,6 +57,7 @@ namespace SprtaDungeon
             _Atk = 8;
             _Def = 8;
             _Speed = 3;
+            _CurHp = _MaxHp;
         }
     }
 }
