@@ -42,7 +42,7 @@ namespace SprtaDungeon
                 Console.Write(">> ");
                 Input = Console.ReadLine();
 
-                if (int.TryParse(Input, out int result) && result > -1 && result < 7) return result;
+                if (int.TryParse(Input, out int result) && result > -1 && result < 8) return result;
 
                 Console.Write("다시 입력해 주십시오...");
                 Thread.Sleep(500);

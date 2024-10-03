@@ -211,6 +211,8 @@ namespace SprtaDungeon
                     int sellPrice = (int)(selectedItem.Price * 0.8);
                     player._Gold += sellPrice;
                     inventory.RemoveItem(selectedItem);
+                    Inventory.GetInstance().EquippedItems.Remove(selectedItem);
+                    (GameManager.Instance.Player as Player).ExtraAtkDef(selectedItem.Type == ItemType.Weapon, false, selectedItem.Value);
                     Console.WriteLine($"{selectedItem.Name}을(를) {sellPrice}G에 판매하셨습니다!");
                 }
                 else
@@ -229,7 +231,8 @@ namespace SprtaDungeon
 
         public int Start()
         {
-            throw new NotImplementedException();
+            ShowShop(GameManager.Instance.Player as Player);
+            return 0;
         }
     }
 }

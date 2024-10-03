@@ -15,8 +15,8 @@ namespace SprtaDungeon
             return _instance;
         }
 
-        public List<Item> Items { get; private set; }
-        public List<Item> EquippedItems { get; private set; }
+        public List<Item> Items { get; set; }
+        public List<Item> EquippedItems { get; set; }
         public List<Potion> potions { get; set; }
 
         public Inventory()
@@ -49,6 +49,8 @@ namespace SprtaDungeon
 
         public void EquipItem(Item item, Player player) // player 매개변수 추가
         {
+            if (item == null) return;
+
             if (IsEquipped(item))
             {
                 // 장비 해제
