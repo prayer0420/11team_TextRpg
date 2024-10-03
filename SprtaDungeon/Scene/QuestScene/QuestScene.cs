@@ -11,7 +11,6 @@ namespace SprtaDungeon
 
         int Scene.Start()
         {
-
             Creature player = GameManager.Instance.Player;
 
             Console.Clear();
@@ -22,14 +21,15 @@ namespace SprtaDungeon
             Console.WriteLine("3. 퀘스트 완료 하기");
 
             Console.Write(">> ");
-            int choice = int.Parse(Console.ReadLine());
+            if(int.TryParse(Console.ReadLine(), out int choice))
 
             switch (choice)
             {
                 case 1:
                     QuestManager.GetInstance().ShowAvailableQuests(player);
                     Console.WriteLine("퀘스트를 선택하여 상세정보를 보거나 수락하세요:");
-                    int questIndex = int.Parse(Console.ReadLine());
+                    if(int.TryParse(Console.ReadLine(), out int questIndex))
+
                     QuestManager.GetInstance().SelectQuest(questIndex, player);
                     break;
                 case 2:
@@ -38,7 +38,7 @@ namespace SprtaDungeon
                 case 3:
                     QuestManager.GetInstance().ShowActiveQuests();
                     Console.WriteLine("완료할 퀘스트를 선택하세요:");
-                    int completeIndex = int.Parse(Console.ReadLine());
+                    if(int.TryParse(Console.ReadLine(), out int completeIndex))
                     QuestManager.GetInstance().CompleteQuest(completeIndex, player);
                     break;
             }

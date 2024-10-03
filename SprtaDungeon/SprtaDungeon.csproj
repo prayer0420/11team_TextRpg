@@ -96,11 +96,13 @@
     <Compile Include="Scene\DungeonScene\DungeonMap.cs" />
     <Compile Include="Scene\DungeonScene\DungeonRoom.cs" />
     <Compile Include="Scene\DungeonScene\DungeonScene.cs" />
+    <Compile Include="Scene\GameoverScene\GameoverScene.cs" />
     <Compile Include="Scene\InventoryScene\InventoryScene.cs" />
     <Compile Include="Scene\MainScene\MainScene.cs" />
     <Compile Include="Scene\QuestScene\Quest.cs" />
     <Compile Include="Scene\QuestScene\QuestManager.cs" />
     <Compile Include="Scene\QuestScene\QuestScene.cs" />
+    <Compile Include="Scene\SaveScene\SaveScene.cs" />
     <Compile Include="Scene\Scene.cs" />
     <Compile Include="Scene\SceneManager\SceneManager.cs" />
     <Compile Include="Scene\ShopScene\ShopScene.cs" />

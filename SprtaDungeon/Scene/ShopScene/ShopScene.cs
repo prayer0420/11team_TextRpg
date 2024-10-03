@@ -229,7 +229,8 @@ namespace SprtaDungeon
 
         public int Start()
         {
-            throw new NotImplementedException();
+            ShowShop(GameManager.Instance.Player as Player);
+            return 0;
         }
     }
 }
