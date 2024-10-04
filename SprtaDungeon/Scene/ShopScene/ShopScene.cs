@@ -152,7 +152,14 @@ namespace SprtaDungeon
                     else if (player._Gold >= selectedItem.Price)
                     {
                         player._Gold -= selectedItem.Price;
-                        Inventory.GetInstance().AddItem(selectedItem);
+
+                        if(selectedItem is Potion)
+                        {
+                            Inventory.GetInstance().potions.Add(selectedItem as Potion);
+                        }
+                        else Inventory.GetInstance().AddItem(selectedItem);
+
+
                         shopItemSold[selectedItem.ItemId] = true;
                         Console.WriteLine($"{selectedItem.Name}을(를) 구매하셨습니다!");
                     }

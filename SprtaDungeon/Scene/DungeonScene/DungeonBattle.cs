@@ -83,7 +83,7 @@ namespace SprtaDungeon
 
                         int potionNum = action.itemNum;
                         Potion potion = player.inventory.potions[potionNum];
-                        player.Heal(potion.Value);
+                        player.Heal(potion.RecoveryAmount);
                         potion.PotionCount--;
                         if(potion.PotionCount <= 0) player.inventory.potions.Remove(potion);
 
