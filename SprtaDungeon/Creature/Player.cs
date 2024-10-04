@@ -54,23 +54,23 @@ namespace SprtaDungeon
                 if (choice)
                 {
                     _ExtraAtk += value;
-                    _Atk += _ExtraAtk;
+                    _Atk += value;
                 }
                 else {
                     _ExtraDef += value;
-                    _Def += _ExtraDef;
+                    _Def += value;
                 }
             }
             else
             {
                 if (choice)
                 {
-                    _Atk -= _ExtraAtk;
+                    _Atk -= value;
                     _ExtraAtk -= value;
                 }
                 else
                 {
-                    _Def -= _ExtraDef;
+                    _Def -= value;
                     _ExtraDef -= value;
                 }
             }
