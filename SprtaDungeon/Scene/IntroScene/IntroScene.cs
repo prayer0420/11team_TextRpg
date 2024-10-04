@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SprtaDungeon
+namespace SprtaDungeon.Scene.IntroScene
 {
-    internal class Monster
+    internal class IntroScene
     {
     }
 }

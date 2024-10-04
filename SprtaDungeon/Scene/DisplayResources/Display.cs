@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace SprtaDungeon
 {
-    internal class Shop
+    public interface Display
     {
+        string Input { get; set; }
+        Point DisplayPoint { get; set; }
+
+        void Display();
+        int Select();
     }
 }

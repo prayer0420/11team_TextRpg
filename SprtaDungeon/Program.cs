@@ -10,13 +10,10 @@ namespace SprtaDungeon
     {
         static void Main(string[] args)
         {
+            Game game = Game.Instance;
 
-            Game game = new Game();
-            while (true)
-            {
-                game.start();
-
-            }
+            game.GameStart();
+    
         }
     }
 }
