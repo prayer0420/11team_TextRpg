@@ -53,7 +53,7 @@ namespace SprtaDungeon
             if (isPlayer)
             {
                 Console.WriteLine($"Lv. {creature._Lv:D2}");
-                Console.WriteLine($"Chad ( {creature._Job} )");
+                Console.WriteLine($"Chad ( {creature._Job} ) Name : {creature._Name}");
                 Console.WriteLine($"HP : {creature._CurHp} / {creature._MaxHp}");
                 Console.WriteLine($"MP : {creature._CurMp} / {creature._MaxMp}");
             }
