@@ -63,8 +63,8 @@ namespace SprtaDungeon
                 Console.WriteLine(isDisplayNumber ? $"{count}. " + monsterStat : monsterStat);
             }
 
-            Console.WriteLine((creature._ExtraAtk == 0) ? $"공격력 : {creature._Atk}" : $"공격력 : {creature._Atk + creature._ExtraAtk} (+{creature._ExtraAtk})");
-            Console.WriteLine((creature._ExtraDef == 0) ? $"방어력 : {creature._Def}" : $"공격력 : {creature._Def + creature._ExtraDef} (+{creature._ExtraDef})");
+            Console.WriteLine((creature._ExtraAtk == 0) ? $"공격력 : {creature._Atk}" : $"공격력 : {creature._Atk} (+{creature._ExtraAtk})");
+            Console.WriteLine((creature._ExtraDef == 0) ? $"방어력 : {creature._Def}" : $"공격력 : {creature._Def} (+{creature._ExtraDef})");
             Console.WriteLine($"스피드 : {creature._Speed}");
 
             if (isPlayer && !isBattle)

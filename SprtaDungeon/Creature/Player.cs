@@ -189,7 +189,7 @@ namespace SprtaDungeon
             _CurMp = _MaxMp;
 
             SkillListAdd(new Skill("알파 스트라이크", "공격력 * 2 로 하나의 적을 공격합니다.", 10, 2.0f, 1));
-            SkillListAdd(new Skill("더블 스트라이크", "공격력 * 1.5 로 2명의 적을 랜덤으로 공격합니다.", 15, 1.5f, 2));
+            SkillListAdd(new Skill("더블 스트라이크", "공격력 * 3 로 하나의 적을 공격합니다.", 15, 1.5f, 1));
         }
     }
 
@@ -208,7 +208,7 @@ namespace SprtaDungeon
             _CurMp = _MaxMp;
 
             SkillListAdd(new Skill("헤드샷", "공격력 * 2.5 로 하나의 적을 공격합니다.", 10, 2.5f, 1));
-            SkillListAdd(new Skill("다중사격", "공격력 * 2.0 로 2명의 적을 랜덤으로 공격합니다.", 15, 2.0f, 2));
+            SkillListAdd(new Skill("다중사격", "공격력 * 3 로 하나의 적을 공격합니다.", 15, 3.0f, 1));
         }
     }
 
@@ -227,7 +227,7 @@ namespace SprtaDungeon
             _CurMp = _MaxMp;
 
             SkillListAdd(new Skill("화염 강타", "공격력 * 3.0 로 하나의 적을 공격합니다.", 10, 3.0f, 1));
-            SkillListAdd(new Skill("화염 폭발", "공격력 * 2.5 로 3명의 적을 랜덤으로 공격합니다.", 15, 2.5f, 3));
+            SkillListAdd(new Skill("화염 폭발", "공격력 * 4 로 하나의 적을 공격합니다.", 20, 4f, 1));
         }
     }
 }
